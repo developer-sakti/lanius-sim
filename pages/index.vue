@@ -1,0 +1,168 @@
+<template>
+  <v-container>
+    <v-row justify="center">
+      <span
+        class="display-1 font=weight-bold"
+        style="text-decoration:underline"
+      >
+        SIM 1 FORM
+      </span>
+    </v-row>
+    <v-row class="mt-5">
+      <v-col cols="12" xs="12" sm="12" md="12">
+        <v-expansion-panels accordion>
+          <v-expansion-panel>
+            <v-expansion-panel-header class="headline blue--text">
+              CHECKLIST CLEARENCE SMALL SACHET
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-list>
+                <v-list-item v-for="item in form1" :key="item.id">
+                  <v-list-item-content class="blue--text">
+                    <v-list-item-title class="title" v-text="item.subform" />
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-content class="blue--text">
+                    <v-btn
+                      large
+                      color="primary"
+                      @click="dialogCloseClearence = true"
+                    >
+                      submit & close pro
+                    </v-btn>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-col>
+      <v-col cols="12" xs="12" sm="12" md="12">
+        <v-expansion-panels accordion>
+          <v-expansion-panel>
+            <v-expansion-panel-header class="headline blue--text">
+              FILLING SACHET MONITORING
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-list>
+                <v-list-item v-for="item in form2" :key="item.id">
+                  <v-list-item-content class="blue--text">
+                    <v-list-item-title class="title" v-text="item.subform" />
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-content class="blue--text">
+                    <v-btn large color="primary">submit & close PrO</v-btn>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-col>
+      <v-col cols="12" xs="12" sm="12" md="12">
+        <v-expansion-panels accordion>
+          <v-expansion-panel>
+            <v-expansion-panel-header class="headline blue--text">
+              PACKING SACHET MONITORING
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-list>
+                <v-list-item v-for="item in form3" :key="item.id">
+                  <v-list-item-content class="blue--text">
+                    <v-list-item-title class="title" v-text="item.subform" />
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-content class="blue--text">
+                    <v-btn large color="primary">submit & close PrO</v-btn>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-col>
+      <v-col cols="12" xs="12" sm="12" md="12">
+        <v-expansion-panels accordion>
+          <v-expansion-panel>
+            <v-expansion-panel-header class="headline blue--text">
+              KONDISI OPERASIONAL
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-list>
+                <v-list-item v-for="item in form4" :key="item.id">
+                  <v-list-item-content class="blue--text">
+                    <v-list-item-title class="title" v-text="item.subform" />
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-col>
+    </v-row>
+    <v-dialog v-model="dialogCloseClearence" max-width="80vw">
+      <v-card>
+        <v-card-title class="primary white--text">
+          <v-row justify="center">
+            <span>SUBMIT FORM</span>
+          </v-row>
+        </v-card-title>
+        <v-card-text>
+          <v-form
+            ref="closeProForm1"
+            v-model="closeProForm1Validation"
+            lazy-validation
+          >
+            <v-row>
+              <v-col sm="12" cols="12">
+                <v-text-field label="BIB OPERATOR" outlined />
+              </v-col>
+              <v-col sm="12" cols="12">
+                <v-text-field label="SUPERVISOR" outlined />
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-card-text>
+        <v-card-actions class="pb-3 pt-0 mt-0">
+          <v-spacer />
+          <v-btn class="warning">Cancel</v-btn>
+          <v-btn class="primary">Submit</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-container>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      product: 'Produk A',
+      shift: 'Shift 1',
+      form1: [
+        { id: 1, subform: 'Informasi Produksi' },
+        { id: 2, subform: 'CLEARENCE PrO Produk Sebelumnya' },
+        { id: 3, subform: 'PREPARE PrO Produk Sebelumnya' },
+        { id: 4, subform: 'Ketidaksesuaian' }
+      ],
+      form2: [
+        { id: 5, subform: 'Informasi Produksi' },
+        { id: 6, subform: 'Kondisi Mesin dan Area Kerja' },
+        { id: 7, subform: 'Pengambilan Sampel Rotary Magnet' },
+        { id: 8, subform: 'Pemeriksaan Autoquality' },
+        { id: 9, subform: 'Catatan' }
+      ],
+      form3: [
+        { id: 10, subform: 'Informasi Produksi' },
+        { id: 11, subform: 'Pemeriksaan' },
+        { id: 12, subform: 'Catatan' }
+      ],
+      form4: [{ id: 13, subform: 'Filling' }, { id: 14, subform: 'Packing' }],
+      dialogCloseClearence: false,
+      closeProForm1Validation: true
+    }
+  }
+}
+</script>
