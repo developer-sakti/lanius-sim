@@ -1,17 +1,17 @@
 <template>
   <v-container>
-    <v-row justify="center">
+    <!-- <v-row justify="center" class="pb-5">
       <span
         class="display-1 font=weight-bold"
         style="text-decoration:underline"
       >
         SIM 1 FORM
       </span>
-    </v-row>
-    <v-row class="mt-5">
+    </v-row> -->
+    <v-row class="mt-5 pt-5">
       <v-col cols="12" xs="12" sm="12" md="12">
         <v-expansion-panels accordion>
-          <v-expansion-panel>
+          <v-expansion-panel class="elevation-0">
             <v-expansion-panel-header class="headline blue--text">
               CHECKLIST CLEARENCE SMALL SACHET
             </v-expansion-panel-header>
@@ -111,11 +111,7 @@
           </v-row>
         </v-card-title>
         <v-card-text>
-          <v-form
-            ref="closeProForm1"
-            v-model="closeProForm1Validation"
-            lazy-validation
-          >
+          <v-form ref="closeProForm1" v-model="valid" lazy-validation>
             <v-row>
               <v-col sm="12" cols="12">
                 <v-text-field label="BIB OPERATOR" outlined />
@@ -136,11 +132,15 @@
   </v-container>
 </template>
 <script>
+import user from '~/mixins/user'
 export default {
+  mixins: [user],
+  middleware: ['user'],
   data() {
     return {
       product: 'Produk A',
       shift: 'Shift 1',
+      valid: true,
       form1: [
         { id: 1, subform: 'Informasi Produksi' },
         { id: 2, subform: 'CLEARENCE PrO Produk Sebelumnya' },
@@ -160,8 +160,12 @@ export default {
         { id: 12, subform: 'Catatan' }
       ],
       form4: [{ id: 13, subform: 'Filling' }, { id: 14, subform: 'Packing' }],
-      dialogCloseClearence: false,
-      closeProForm1Validation: true
+      dialogCloseClearence: false
+    }
+  },
+  created() {
+    if (this.user === null) {
+      this.dialogProfile = true
     }
   }
 }
