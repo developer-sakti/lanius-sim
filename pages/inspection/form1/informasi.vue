@@ -1,0 +1,62 @@
+<template>
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="10" sm="10" class="text-center title primary--text">
+        Informasi Produksi
+      </v-col>
+      <v-col cols="10" sm="10">
+        <v-form>
+          <v-menu
+            ref="inputDate"
+            v-model="datePicker"
+            :close-on-content-click="false"
+            transition="scale-transition"
+            offset-y
+            full-width
+            min-width="290px"
+          >
+            <template v-slot:activator="{ on }">
+              <v-text-field
+                label="Tanggal"
+                required
+                outlined
+                append-icon="mdi-calendar"
+                readonly
+                v-on="on"
+              />
+            </template>
+            <v-date-picker v-if="datePicker" reactive no-title scrollable />
+          </v-menu>
+
+          <v-text-field label="Nama Produk" required outlined />
+          <v-text-field label="No PrO" required outlined />
+          <v-text-field label="No Batch" required outlined />
+          <v-text-field label="Produk Sebelumnya" required outlined />
+          <v-text-field label="Mesin" required outlined />
+        </v-form>
+      </v-col>
+      <v-col cols="10" sm="5" class="pt-0">
+        <v-btn block large class="grey lighten-1" dark @click="discard()">
+          discard
+        </v-btn>
+      </v-col>
+      <v-col cols="10" sm="5" class="pt-0">
+        <v-btn block large color="primary">submit</v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      datePicker: false
+    }
+  },
+  methods: {
+    discard() {
+      this.$router.push('/inspection')
+    }
+  }
+}
+</script>
