@@ -44,7 +44,7 @@
                 </v-col>
                 <v-col cols="12" sm="3">As formula</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field solo />
+                  <v-text-field outlined />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
@@ -110,7 +110,7 @@
                 </v-col>
                 <v-col cols="12" sm="3">As formula</v-col>
                 <v-col cols="12" sm="2">
-                  <v-text-field solo />
+                  <v-text-field outlined />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
@@ -187,7 +187,7 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field solo />
+                  <v-text-field outlined />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
@@ -201,7 +201,7 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field solo />
+                  <v-text-field outlined />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
@@ -215,7 +215,7 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field solo />
+                  <v-text-field outlined />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
@@ -229,7 +229,7 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field solo />
+                  <v-text-field outlined />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
@@ -253,7 +253,7 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field solo />
+                  <v-text-field outlined />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
@@ -288,7 +288,7 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field solo />
+                  <v-text-field outlined />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
@@ -302,7 +302,7 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2">
-                  <v-text-field solo />
+                  <v-text-field outlined />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
@@ -316,7 +316,7 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2">
-                  <v-text-field solo />
+                  <v-text-field outlined />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />

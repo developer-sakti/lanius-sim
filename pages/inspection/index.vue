@@ -44,7 +44,7 @@
                 FILLING SACHET MONITORING
               </v-list-item-title>
             </template>
-            <v-list-item v-for="item in form2" :key="item.id">
+            <v-list-item v-for="item in form2" :key="item.id" :to="item.path">
               <v-list-item-content class="blue--text">
                 <v-list-item-title class="title" v-text="item.subform" />
               </v-list-item-content>
@@ -161,11 +161,27 @@ export default {
         }
       ],
       form2: [
-        { id: 5, subform: 'Informasi Produksi' },
-        { id: 6, subform: 'Kondisi Mesin dan Area Kerja' },
-        { id: 7, subform: 'Pengambilan Sampel Rotary Magnet' },
-        { id: 8, subform: 'Pemeriksaan Autoquality' },
-        { id: 9, subform: 'Catatan' }
+        {
+          id: 5,
+          subform: 'Informasi Produksi',
+          path: '/inspection/form2/informasi'
+        },
+        {
+          id: 6,
+          subform: 'Kondisi Mesin dan Area Kerja',
+          path: '/inspection/form2/kondisi'
+        },
+        {
+          id: 7,
+          subform: 'Pengambilan Sampel Rotary Magnet',
+          path: '/inspection/form2/sampel'
+        },
+        {
+          id: 8,
+          subform: 'Pemeriksaan Autoquality',
+          path: '/inspection/form2/autoquality'
+        },
+        { id: 9, subform: 'Catatan', path: '/inspection/form2/catatan' }
       ],
       form3: [
         { id: 10, subform: 'Informasi Produksi' },
