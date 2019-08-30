@@ -1,7 +1,14 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="10" sm="10" class="text-center title primary--text">
+      <v-col cols="10" sm="10" class="text-center title primary--text pb-0">
+        CHECKLIST CLEARENCE SMALL SACHET
+      </v-col>
+      <v-col
+        cols="10"
+        sm="10"
+        class="text-center subtitle-1 primary--text pt-0 font-weight-bold"
+      >
         Ketidaksesuaian
       </v-col>
       <v-col cols="10" sm="10">
@@ -14,7 +21,7 @@
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">
         <v-btn block large class="grey lighten-1" dark @click="discard()">
-          discard
+          save as draft
         </v-btn>
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">

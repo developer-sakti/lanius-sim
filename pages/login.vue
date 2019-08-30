@@ -35,7 +35,7 @@
                 large
                 @click="saveProfile()"
               >
-                <span class="mx-5">save</span>
+                <span class="mx-5 subtitle-1 font-weight-bold">save</span>
               </v-btn>
             </v-col>
           </v-row>

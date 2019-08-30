@@ -1,0 +1,10 @@
+*{
+  font-family: 'HelveticaNeueLight';
+}
+
+@font-face{
+  font-family: 'HelveticaNeueLight';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/font/HelveticaNeueLight.ttf) format('truetype');
+}

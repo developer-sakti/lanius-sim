@@ -1,7 +1,14 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="12" sm="12" class="text-center title primary--text">
+      <v-col cols="10" sm="10" class="text-center title primary--text py-0">
+        FILLING SACHET MONITORING
+      </v-col>
+      <v-col
+        cols="10"
+        sm="10"
+        class="text-center subtitle-1 primary--text py-0 font-weight-bold"
+      >
         Pemeriksaan Autoquality
       </v-col>
       <v-col cols="10" sm="10">
@@ -115,7 +122,7 @@
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">
         <v-btn block large class="grey lighten-1" dark @click="discard()">
-          discard
+          save as draft
         </v-btn>
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">

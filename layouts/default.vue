@@ -5,7 +5,7 @@
         <v-img src="/logo.svg" width="80" height="150" />
       </v-avatar>
       <span class="primary--text font-weight-bold ml-5 headline">
-        NUTRICIA SENTUL - SIM 1
+        NUTRICIA SENTUL
       </span>
     </v-app-bar>
     <v-content>

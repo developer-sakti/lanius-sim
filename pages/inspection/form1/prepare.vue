@@ -1,10 +1,14 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="12" sm="12" class="text-center title primary--text pt-0">
+      <v-col cols="12" sm="12" class="text-center title primary--text pb-0">
         PREPARE PrO Produk Sebelumnya
       </v-col>
-      <v-col cols="12" sm="12" class="text-center title primary--text pt-0">
+      <v-col
+        cols="12"
+        sm="12"
+        class="text-center subtitle-0 primary--text pt-0"
+      >
         {{ title }}
       </v-col>
       <v-col cols="12" sm="12" class="pt-0 pb-0">
@@ -348,7 +352,7 @@
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">
         <v-btn block large class="grey lighten-1" dark @click="discard()">
-          discard
+          save as draft
         </v-btn>
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">

@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="10" sm="10" class="text-center title primary--text py-0">
-        FILLING SACHET MONITORING
+        PACKING SACHET MONITORING
       </v-col>
       <v-col
         cols="10"

@@ -2,14 +2,16 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="10" sm="10" class="text-center title primary--text py-0">
-        FILLING SACHET MONITORING
+        PACKING SACHET MONITORING
       </v-col>
       <v-col
         cols="10"
         sm="10"
-        class="text-center subtitle-1 primary--text pt-0 font-weight-bold"
+        class="text-center subtitle-1 primary--text py-0 font-weight-bold"
       >
         Informasi Produksi
+      </v-col>
+      <v-col cols="10" sm="10" class="text-center title primary--text pt-0">
       </v-col>
       <v-col cols="10" sm="10">
         <v-form>
@@ -44,8 +46,6 @@
           />
           <v-text-field label="PO No" required outlined />
           <v-text-field label="Batch" required outlined />
-          <v-text-field label="Produk Sebelumnya" required outlined />
-          <v-select label="Cleaning" required outlined :items="['CF', 'DCF']" />
         </v-form>
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">
