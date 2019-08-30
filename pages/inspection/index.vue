@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row justify="center">
+    <v-row justify="center" class="mt-5">
       <v-btn-toggle v-model="menu">
         <v-btn
           width="40vw"
@@ -49,7 +49,9 @@
                   :to="item.path"
                 >
                   <v-list-item-content class="blue--text">
-                    <v-list-item-title class="title" v-text="item.subform" />
+                    <v-list-item-title class="title">
+                      <span>{{ item.subform }}</span>
+                    </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
@@ -86,7 +88,10 @@
                   :to="item.path"
                 >
                   <v-list-item-content class="blue--text">
-                    <v-list-item-title class="title" v-text="item.subform" />
+                    <v-list-item-title class="title">
+                      <span>{{ item.subform }}</span>
+                      <span class="grey--text">{{ item.note }}</span>
+                    </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
@@ -258,60 +263,68 @@ export default {
         },
         {
           id: 3,
-          subform: 'PREPARE PrO Produk Sebelumnya',
+          subform: 'PREPARE PrO Produk Selanjutnya',
           path: '/inspection/form1/prepare'
         },
         {
           id: 4,
+          subform: 'Pemeriksaan kondisi kaca/plastik keras',
+          path: '/inspection/form1/kondisikaca'
+        },
+        {
+          id: 5,
           subform: 'Ketidaksesuaian',
           path: '/inspection/form1/ketidaksesuaian'
         }
       ],
       form2: [
         {
-          id: 5,
+          id: 6,
           subform: 'Informasi Produksi',
+          note: '',
           path: '/inspection/form2/informasi'
         },
         {
-          id: 6,
+          id: 7,
           subform: 'Kondisi Mesin dan Area Kerja',
+          note: '',
           path: '/inspection/form2/kondisi'
         },
         {
-          id: 7,
+          id: 8,
           subform: 'Pengambilan Sampel Rotary Magnet',
+          note: '(setiap 1 hari sekali)',
           path: '/inspection/form2/sampel'
         },
         {
-          id: 8,
+          id: 9,
           subform: 'Pemeriksaan Autoquality',
+          note: '(awal start dan  per 2 jam)',
           path: '/inspection/form2/autoquality'
         },
-        { id: 9, subform: 'Catatan', path: '/inspection/form2/catatan' }
+        { id: 10, subform: 'Catatan', path: '/inspection/form2/catatan' }
       ],
       form3: [
         {
-          id: 10,
+          id: 11,
           subform: 'Informasi Produksi',
           note: '',
           path: '/inspection/form3/informasi'
         },
         {
-          id: 11,
+          id: 12,
           subform: 'Pemeriksaan Checkweigher dan X-Ray',
-          note: '(Diisi setiap 2 jam)',
+          note: '(diisi setiap 2 jam)',
           path: '/inspection/form3/checkxray'
         },
         {
-          id: 12,
+          id: 13,
           subform: 'Pemeriksaan X-Ray',
-          note: '(Diisi setiap 1 jam)',
+          note: '(diisi setiap 1 jam)',
           path: '/inspection/form3/xray'
         },
         { id: 14, subform: 'Catatan', path: '/inspection/form3/catatan' }
       ],
-      form4: [{ id: 13, subform: 'Filling' }, { id: 14, subform: 'Packing' }],
       dialogCloseClearence: false
     }
   },
@@ -322,3 +335,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+* {
+  font-family: 'HelveticaNeueLight';
+}
+</style>

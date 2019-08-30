@@ -13,10 +13,10 @@
       </v-col>
       <v-col cols="12" sm="12" class="pt-0 pb-0">
         <v-row class="primary--text subtitle-1 font-weight-bold">
-          <v-col cols="12" sm="4">Parameter Cek</v-col>
-          <v-col cols="12" sm="3">Standart</v-col>
-          <v-col cols="12" sm="2">Checking</v-col>
-          <v-col cols="12" sm="3">Status</v-col>
+          <v-col cols="12" sm="4" class="pb-0">Parameter Cek</v-col>
+          <v-col cols="12" sm="3" class="pb-0">Standart</v-col>
+          <v-col cols="12" sm="2" class="pb-0">Checking</v-col>
+          <v-col cols="12" sm="3" class="pb-0">Status</v-col>
         </v-row>
         <v-window v-model="step">
           <v-window-item :value="1">
@@ -202,6 +202,15 @@
                   <span class="caption black--text">
                     (Jenis Foil)
                   </span>
+                  <br />
+                  <div>
+                    <span class="caption black--text">
+                      *Label/stiker material
+                    </span>
+                    <v-btn icon>
+                      <v-icon>mdi-camera</v-icon>
+                    </v-btn>
+                  </div>
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
@@ -216,6 +225,15 @@
                   <span class="caption black--text">
                     (Standard Coding Sachet)
                   </span>
+                  <br />
+                  <div>
+                    <span class="caption black--text">
+                      *Cetakan coding sachet
+                    </span>
+                    <v-btn icon>
+                      <v-icon>mdi-camera</v-icon>
+                    </v-btn>
+                  </div>
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
@@ -254,10 +272,19 @@
                   <span class="caption black--text">
                     (Menggunakan kertas karbon)
                   </span>
+                  <br />
+                  <div>
+                    <span class="caption black--text">
+                      *Kertas karbon
+                    </span>
+                    <v-btn icon>
+                      <v-icon>mdi-camera</v-icon>
+                    </v-btn>
+                  </div>
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field outlined />
+                  <span>-</span>
                 </v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
@@ -303,6 +330,15 @@
                   <span class="caption black--text">
                     (Standard Coding Folding Box)
                   </span>
+                  <br />
+                  <div>
+                    <span class="caption black--text">
+                      *Cetakan coding folding box
+                    </span>
+                    <v-btn icon>
+                      <v-icon>mdi-camera</v-icon>
+                    </v-btn>
+                  </div>
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2">
@@ -317,6 +353,15 @@
                   <span class="caption black--text">
                     (Standard Coding Outer Carton)
                   </span>
+                  <br />
+                  <div>
+                    <span class="caption black--text">
+                      *Cetakan coding outer carton
+                    </span>
+                    <v-btn icon>
+                      <v-icon>mdi-camera</v-icon>
+                    </v-btn>
+                  </div>
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2">
@@ -370,6 +415,7 @@
 </template>
 <script>
 export default {
+  middleware: ['user'],
   data() {
     return {
       step: 1,

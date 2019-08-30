@@ -252,6 +252,7 @@
 </template>
 <script>
 export default {
+  middleware: ['user'],
   data() {
     return {
       timePicker: false

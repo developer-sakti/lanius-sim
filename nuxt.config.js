@@ -29,7 +29,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~plugins/vuescroll'],
+  plugins: [
+    '~plugins/vuescroll',
+    { src: '~/plugins/vue-carousel.js', ssr: false }
+  ],
   /*
    ** Nuxt.js dev-modules
    */

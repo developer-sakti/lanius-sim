@@ -1,0 +1,158 @@
+{
+  "id": 1,
+  "i_produksi": {
+    "date": "2019-08-12",
+    "product_name": "string",
+    "pro_no": "string",
+    "batch_no": "string",
+    "previous_product": "string",
+    "machine": "string"
+  },
+  "c_pro_previous_product": {
+    "weighing": {
+      "l_previous_pro": 0,
+      "material_residu": 0,
+      "weight_equipment": 0,
+      "weight_rock_child": 0,
+      "rubbish" : 0
+
+    },
+    "d_b_rm_sa": {
+      "last_batch": 0,
+      "conveyor": 0,
+      "is_blending_done": 0,
+      "vacum_cleaner": 0,
+      "screen_dumping_station": 0,
+      "blender": 0,
+      "rotary_magnet": 0,
+      "vibro_tailing": 0,
+      "rubbish": 0
+    },
+    "filling": {
+      "auto_sampler": 0,
+      "hopper_filling": 0,
+      "aluminium_foil_residu": 0,
+      "rejection_check_weigher": 0,
+      "conveyor": 0,
+      "sample_fg": 0,
+      "reject_fg": 0,
+      "rejected_powder": 0
+    },
+    "packing": {
+      "conveyor": 0,
+      "cartoner": 0,
+      "xray_rejection": 0,
+      "sample_fg": 0,
+      "reject_fg": 0,
+      "reject_powder": 0,
+      "casepacker": 0,
+      "scoop": 0
+    }
+  },
+  "p_pro_next_product": {
+    "weighing": {
+      "bag_rm_condition": 0,
+      "rm_completeness" : {
+        "total": 5,
+        "status": 0
+      },
+      "cloth_shoe": 0,
+      "environt_table": 0,
+      "rh_temp_press": 0
+    },
+    "d_b_rm_sa": {
+      "dumping_rm": {
+        "total" : 5,
+        "status" : 0
+      },
+      "cloth_shoe" : 0,
+      "environt_table": 0,
+      "rh_temp_press": 0
+    },
+    "filling": {
+      "set_autosampler": 0,
+      "set_filling": {
+        "sachet_gr": 5,
+        "status": 0
+      },
+      "material_alufoil": {
+        "foil": "string",
+        "status": 0,
+        "image": "path"
+      },
+      "set_code_sachet_fg": {
+        "standard_coding_sachet": "string",
+        "status": 0,
+        "image": "path"
+      },
+      "set_net_weight": {
+        "set_weight": "string",
+        "status": 0
+      },
+      "dosing_nitrogen": 0,
+      "ver_hor_seal_check": {
+        "status": 0,
+        "image": "path"
+      }
+    },
+    "packing": {
+      "set_xray": 0,
+      "scoop_change": {
+        "number": "string",
+        "status": 0
+      },
+      "set_code_folding_box": {
+        "standard_coding_outer_carton": "string",
+        "status": 0,
+        "image": "path"
+      },
+      "stock_glue_folding_box": 0,
+      "stock_int_outer_carbon": 0
+    }
+  },
+  "fiber_check": {
+    "front_alufoil": {
+      "reg": "string",
+      "score": 1
+    },
+    "back_alufoil": {
+      "reg": "string",
+      "score": 1
+    },
+    "top_alufoil": {
+      "reg": "string",
+      "score": 1
+    },
+    "side_alufoil": {
+      "reg": "string",
+      "score": 1
+    },
+    "front_filling": {
+      "reg": "string",
+      "score": 1
+    },
+    "back_filling": {
+      "reg": "string",
+      "score": 1
+    },
+    "top_filling": {
+      "reg": "string",
+      "score": 1
+    },
+    "side_filling": {
+      "reg": "string",
+      "score": 1
+    }
+
+  },
+  "unnormal": {
+    "problem": "text",
+    "correction": "text",
+    "record": "text",
+    "verificator": "string"
+  },
+  "reporter": {
+    "bib_operator": "string",
+    "supervisor": "string"
+  }
+}

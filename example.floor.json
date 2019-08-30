@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "string",
+    "date": "2019-08-13",
+    "description": "text",
+    "image": "path",
+    "fixed": {
+      "id": 1,
+      "title": "string",
+      "date": "2019-08-13",
+      "description": "text",
+      "image": "path"
+    },
+    "comment": [
+      {
+        "sender": "string",
+        "value": "text"
+      }
+    ]
+  }
+]

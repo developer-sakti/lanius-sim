@@ -1,0 +1,66 @@
+{
+  "id": 1,
+  "i_produksi": {
+    "date": "2019-08-12",
+    "product_name": "string",
+    "size": "string",
+    "pro_no": "string",
+    "batch_no": "string"
+  },
+  "checkweigher_xray_2hour": [
+    {
+      "time": "00:00:00",
+      "rejector_condition": 0,
+      "weight": {
+        "value": 10,
+        "type": "A"
+      },
+      "machine_condition": 0,
+      "ss1": 0,
+      "ss2": 0,
+      "ss3": 0,
+      "ss4": 0,
+      "ss5": 0,
+      "glass1": 0,
+      "glass2": 0,
+      "glass3": 0,
+      "glass4": 0,
+      "glass5": 0,
+      "aluminium1": 0,
+      "aluminium2": 0,
+      "aluminium3": 0,
+      "aluminium4": 0,
+      "aluminium5": 0
+
+    }
+  ],
+  "xray_check_1hour": [
+    {
+      "time": "00:00:00",
+      "counter_total_sachet": 10,
+      "carton_box_no": 10,
+      "total_sachet_false_rejection": 12,
+      "total_sachet_positive_rejection": 13,
+      "dummy_scoop": 13,
+      "package_integrity": 12
+    }
+  ],
+  "note": {
+    "problem": "text",
+    "correction": "text",
+    "record": "text",
+    "verificator": "string"
+  },
+  "reporter": {
+    "previous_operator": {
+      "name": "string",
+      "shift": 1
+    },
+    "next_operator": {
+      "name": "string",
+      "shift": 1
+    },
+    "previous_supervisor": "string",
+    "next_supervisor": "String"
+  }
+}

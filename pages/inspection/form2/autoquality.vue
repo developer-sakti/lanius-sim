@@ -91,7 +91,7 @@
                 <v-text-field outlined />
               </v-col>
               <v-col cols="12" sm="4" class="py-0">
-                <v-radio-group v-model="row" row>
+                <v-radio-group row>
                   <v-radio label="A" value="A"></v-radio>
                   <v-radio label="B" value="B"></v-radio>
                   <v-radio label="C" value="C"></v-radio>
@@ -110,7 +110,7 @@
                 <v-text-field outlined />
               </v-col>
               <v-col cols="12" sm="4" class="py-0">
-                <v-radio-group v-model="row" row>
+                <v-radio-group row>
                   <v-radio label="A" value="A"></v-radio>
                   <v-radio label="B" value="B"></v-radio>
                   <v-radio label="C" value="C"></v-radio>
@@ -140,6 +140,7 @@
 </template>
 <script>
 export default {
+  middleware: ['user'],
   data() {
     return {
       timePicker: false,

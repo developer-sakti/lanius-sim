@@ -32,6 +32,7 @@
 </template>
 <script>
 export default {
+  middleware: ['user'],
   data() {
     return {
       datePicker: false

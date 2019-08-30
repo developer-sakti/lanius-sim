@@ -63,6 +63,7 @@
 import user from '~/mixins/user'
 export default {
   mixins: [user],
+  middleware: ['user'],
   data() {
     return {
       valid: true,

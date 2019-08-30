@@ -165,28 +165,43 @@
                 class="primary--text subtitle-1 font-weight-medium"
                 align="center"
               >
-                <v-col cols="12" sm="6">Lembar PrO Produk Sebelumnya</v-col>
-                <v-col cols="12" sm="3">Standart</v-col>
+                <v-col cols="12" sm="6">Conveyor</v-col>
+                <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
                 </v-col>
-                <v-col cols="12" sm="6">Sisa Material</v-col>
-                <v-col cols="12" sm="3">Standart</v-col>
+                <v-col cols="12" sm="6">Cartoner</v-col>
+                <v-col cols="12" sm="3">Sesuai BOM</v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
                 </v-col>
-                <v-col cols="12" sm="6">Peralatan Menimbang</v-col>
-                <v-col cols="12" sm="3">Standart</v-col>
+                <v-col cols="12" sm="6">X-Ray & Rejection</v-col>
+                <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
                 </v-col>
-                <v-col cols="12" sm="6">Batu Anak Timbang</v-col>
-                <v-col cols="12" sm="3">Standart</v-col>
+                <v-col cols="12" sm="6">Sample FG</v-col>
+                <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
                 </v-col>
-                <v-col cols="12" sm="6">Sampah</v-col>
-                <v-col cols="12" sm="3">Standart</v-col>
+                <v-col cols="12" sm="6">Reject FG</v-col>
+                <v-col cols="12" sm="3">Kosong</v-col>
+                <v-col cols="12" sm="3">
+                  <v-checkbox class="mx-2" label="Not OK" />
+                </v-col>
+                <v-col cols="12" sm="6">Reject Powder</v-col>
+                <v-col cols="12" sm="3">Kosong</v-col>
+                <v-col cols="12" sm="3">
+                  <v-checkbox class="mx-2" label="Not OK" />
+                </v-col>
+                <v-col cols="12" sm="6">Casepacker</v-col>
+                <v-col cols="12" sm="3">Kosong</v-col>
+                <v-col cols="12" sm="3">
+                  <v-checkbox class="mx-2" label="Not OK" />
+                </v-col>
+                <v-col cols="12" sm="6">Scoop</v-col>
+                <v-col cols="12" sm="3">Sesuai BOM</v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox class="mx-2" label="Not OK" />
                 </v-col>
@@ -215,6 +230,7 @@
 </template>
 <script>
 export default {
+  middleware: ['user'],
   data() {
     return {
       step: 1,

@@ -1,0 +1,57 @@
+{
+  "id": 1,
+  "i_produksi": {
+    "date": "2019-08-12",
+    "product_name": "string",
+    "size": "string",
+    "pro_no": "string",
+    "batch_no": "string",
+    "previous_product": "string",
+    "cleaning": "string"
+  },
+  "machine_condition": {
+    "stopper_filler": "string",
+    "cutting_knife": 0,
+    "jaw_seal": {
+      "status": 0,
+      "image": "path"
+    }
+  },
+  "rotary_magnet_sample": {
+    "is_picked": 0,
+    "time_picked": "string"
+  },
+  "autoquality_check": [
+    {
+      "visual_sealing_condition": 0,
+      "vertical_seal_leak_test": 0,
+      "jaw_seal_leak_test": 0,
+      "code": {
+        "value": "string",
+        "type": "string"
+      },
+      "o2_level": {
+        "value": "string",
+        "type": "string"
+      }
+    }
+  ],
+  "note": {
+    "problem": "text",
+    "correction": "text",
+    "record": "text",
+    "verificator": "string"
+  },
+  "reporter": {
+    "previous_operator": {
+      "name": "string",
+      "shift": 1
+    },
+    "next_operator": {
+      "name": "string",
+      "shift": 1
+    },
+    "previous_supervisor": "string",
+    "next_supervisor": "String"
+  }
+}

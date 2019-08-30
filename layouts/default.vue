@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar flat color="grey lighten-4" fixed app height="180" class="pr-0">
+    <v-app-bar flat color="grey lighten-4" fixed app height="120" class="pr-0">
       <v-avatar size="100" tile class="ml-3">
         <v-img src="/logo.svg" width="80" height="150" />
       </v-avatar>
