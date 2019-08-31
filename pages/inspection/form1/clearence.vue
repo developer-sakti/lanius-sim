@@ -27,29 +27,55 @@
                 <v-col cols="12" sm="6">Lembar PrO Produk Sebelumnya</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.weighing.l_previous_pro"
+                    class="mx-2"
+                    :label="form.weighing.l_previous_pro == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Sisa Material</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.weighing.material_residu"
+                    class="mx-2"
+                    :label="
+                      form.weighing.material_residu == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Peralatan Menimbang</v-col>
                 <v-col cols="12" sm="3">
                   Bersih & Terverifikasi (*JIKA JALAN ALERGEN)
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.weighing.weight_equipment"
+                    class="mx-2"
+                    :label="
+                      form.weighing.weight_equipment == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Batu Anak Timbang</v-col>
                 <v-col cols="12" sm="3">Tersedia</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.weighing.weight_rock_child"
+                    class="mx-2"
+                    :label="
+                      form.weighing.weight_rock_child == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Sampah</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.weighing.rubbish"
+                    class="mx-2"
+                    :label="form.weighing.rubbish == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
               </v-row>
             </v-form>
@@ -63,49 +89,91 @@
                 <v-col cols="12" sm="6">Last Batch</v-col>
                 <v-col cols="12" sm="3">Confirm</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.last_batch"
+                    class="mx-2"
+                    :label="form.d_b_rm_sa.last_batch == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Conveyor</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.conveyor"
+                    class="mx-2"
+                    :label="form.d_b_rm_sa.conveyor == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Blending sudah dilakukan</v-col>
                 <v-col cols="12" sm="3">Sesuai Matrix</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.is_blending_done"
+                    class="mx-2"
+                    :label="
+                      form.d_b_rm_sa.is_blending_done == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Vacuum Cleaner</v-col>
                 <v-col cols="12" sm="3">Bersih</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.vacum_cleaner"
+                    class="mx-2"
+                    :label="form.d_b_rm_sa.vacum_cleaner == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Screen Dumping Station</v-col>
                 <v-col cols="12" sm="3">Utuh</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.screen_dumping_station"
+                    class="mx-2"
+                    :label="
+                      form.d_b_rm_sa.screen_dumping_station == 0
+                        ? 'Not OK'
+                        : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Blender</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.blender"
+                    class="mx-2"
+                    :label="form.d_b_rm_sa.blender == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Rotary Magnet</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.rotary_magnet"
+                    class="mx-2"
+                    :label="form.d_b_rm_sa.rotary_magnet == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">
                   Vibro Sifter & Tailing Chute
                 </v-col>
                 <v-col cols="12" sm="3">Kosong & Utuh</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.vibro_tailing"
+                    class="mx-2"
+                    :label="form.d_b_rm_sa.vibro_tailing == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Sampah</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.rubbish"
+                    class="mx-2"
+                    :label="form.d_b_rm_sa.rubbish == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
               </v-row>
             </v-form>
@@ -119,42 +187,80 @@
                 <v-col cols="12" sm="6">Auto Sampler</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.auto_sampler"
+                    class="mx-2"
+                    :label="form.filling.auto_sampler == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Hopper Filling</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.hopper_filling"
+                    class="mx-2"
+                    :label="form.filling.hopper_filling == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Sisa Aluminium Foil</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.aluminium_foil_residu"
+                    class="mx-2"
+                    :label="
+                      form.filling.aluminium_foil_residu == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Rejection Check Weigher</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.rejection_check_weigher"
+                    class="mx-2"
+                    :label="
+                      form.filling.rejection_check_weigher == 0
+                        ? 'Not OK'
+                        : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Conveyor</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.conveyor"
+                    class="mx-2"
+                    :label="form.filling.conveyor == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Sample FG</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.sample_fg"
+                    class="mx-2"
+                    :label="form.filling.sample_fg == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Reject FG</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.reject_fg"
+                    class="mx-2"
+                    :label="form.filling.reject_fg == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Rejected Powder</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.rejected_powder"
+                    class="mx-2"
+                    :label="form.filling.rejected_powder == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
               </v-row>
             </v-form>
@@ -168,42 +274,74 @@
                 <v-col cols="12" sm="6">Conveyor</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.conveyor"
+                    class="mx-2"
+                    :label="form.packing.conveyor == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Cartoner</v-col>
                 <v-col cols="12" sm="3">Sesuai BOM</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.cartoner"
+                    class="mx-2"
+                    :label="form.packing.cartoner == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">X-Ray & Rejection</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.xray_rejection"
+                    class="mx-2"
+                    :label="form.packing.xray_rejection == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Sample FG</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.sample_fg"
+                    class="mx-2"
+                    :label="form.packing.sample_fg == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Reject FG</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.reject_fg"
+                    class="mx-2"
+                    :label="form.packing.reject_fg == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Reject Powder</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.reject_powder"
+                    class="mx-2"
+                    :label="form.packing.reject_powder == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Casepacker</v-col>
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.casepacker"
+                    class="mx-2"
+                    :label="form.packing.casepacker == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="6">Scoop</v-col>
                 <v-col cols="12" sm="3">Sesuai BOM</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.scoop"
+                    class="mx-2"
+                    :label="form.packing.scoop == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
               </v-row>
             </v-form>
@@ -211,7 +349,7 @@
         </v-window>
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">
-        <v-btn block large class="grey lighten-1" dark @click="discard()">
+        <v-btn block large class="grey lighten-1" dark @click="submit()">
           save as draft
         </v-btn>
       </v-col>
@@ -220,7 +358,7 @@
           block
           large
           color="primary"
-          @click="step === 4 ? submit() : save()"
+          @click="step === 4 ? submit() : next()"
         >
           {{ step === 4 ? 'submit' : 'next' }}
         </v-btn>
@@ -229,12 +367,53 @@
   </v-container>
 </template>
 <script>
+import constant from '../../../constant'
 export default {
   middleware: ['user'],
   data() {
     return {
       step: 1,
-      title: 'WEIGHING AREA'
+      title: 'WEIGHING AREA',
+      form: {
+        weighing: {
+          l_previous_pro: 0,
+          material_residu: 0,
+          weight_equipment: 0,
+          weight_rock_child: 0,
+          rubbish: 0
+        },
+        d_b_rm_sa: {
+          last_batch: 0,
+          conveyor: 0,
+          is_blending_done: 0,
+          vacum_cleaner: 0,
+          screen_dumping_station: 0,
+          blender: 0,
+          rotary_magnet: 0,
+          vibro_tailing: 0,
+          rubbish: 0
+        },
+        filling: {
+          auto_sampler: 0,
+          hopper_filling: 0,
+          aluminium_foil_residu: 0,
+          rejection_check_weigher: 0,
+          conveyor: 0,
+          sample_fg: 0,
+          reject_fg: 0,
+          rejected_powder: 0
+        },
+        packing: {
+          conveyor: 0,
+          cartoner: 0,
+          xray_rejection: 0,
+          sample_fg: 0,
+          reject_fg: 0,
+          reject_powder: 0,
+          casepacker: 0,
+          scoop: 0
+        }
+      }
     }
   },
   watch: {
@@ -257,14 +436,31 @@ export default {
       }
     }
   },
+  created() {
+    if (process.client) {
+      const form = localStorage.getItem(
+        constant.FISRT_FORM_C_PRO_PREVIOUS_PRODUCT
+      )
+      if (form !== undefined && form !== null) {
+        this.form = { ...JSON.parse(form) }
+      }
+    }
+  },
   methods: {
     save() {
+      localStorage.setItem(
+        constant.FISRT_FORM_C_PRO_PREVIOUS_PRODUCT,
+        JSON.stringify(this.form)
+      )
+    },
+    next() {
+      this.save()
       this.step++
     },
-    discard() {
+    submit() {
+      this.save()
       this.$router.push('/inspection')
-    },
-    submit() {}
+    }
   }
 }
 </script>

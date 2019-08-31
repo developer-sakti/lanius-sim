@@ -1,6 +1,6 @@
 {
   "id": 1,
-  "i_produksi": {
+  "i_production": {
     "date": "2019-08-12",
     "product_name": "string",
     "pro_no": "string",
@@ -102,6 +102,11 @@
         "status": 0
       },
       "set_code_folding_box": {
+        "standard_coding_folding_box": "string",
+        "status": 0,
+        "image": "path"
+      },
+      "set_code_outer_carton" : {
         "standard_coding_outer_carton": "string",
         "status": 0,
         "image": "path"
@@ -143,7 +148,6 @@
       "reg": "string",
       "score": 1
     }
-
   },
   "unnormal": {
     "problem": "text",

@@ -30,7 +30,7 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~plugins/vuescroll',
+    '~/plugins/vuescroll',
     { src: '~/plugins/vue-carousel.js', ssr: false }
   ],
   /*

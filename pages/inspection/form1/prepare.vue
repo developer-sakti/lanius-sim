@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="12" sm="12" class="text-center title primary--text pb-0">
-        PREPARE PrO Produk Sebelumnya
+        PREPARE PrO Produk Selanjutnya
       </v-col>
       <v-col
         cols="12"
@@ -18,9 +18,9 @@
           <v-col cols="12" sm="2" class="pb-0">Checking</v-col>
           <v-col cols="12" sm="3" class="pb-0">Status</v-col>
         </v-row>
-        <v-window v-model="step">
-          <v-window-item :value="1">
-            <v-form>
+        <v-form ref="formPrepare" lazy-validation>
+          <v-window v-model="step">
+            <v-window-item :value="1">
               <v-row
                 class="primary--text subtitle-1 font-weight-medium"
                 align="center"
@@ -36,7 +36,13 @@
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.weighing.bag_rm_condition"
+                    class="mx-2"
+                    :label="
+                      form.weighing.bag_rm_condition == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Kelengkapan RM</span>
@@ -48,10 +54,22 @@
                 </v-col>
                 <v-col cols="12" sm="3">As formula</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field outlined />
+                  <v-text-field
+                    v-model="form.weighing.rm_completeness.total"
+                    :rules="[v => !!v || 'This is required']"
+                    outlined
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.weighing.rm_completeness.status"
+                    class="mx-2"
+                    :label="
+                      form.weighing.rm_completeness.status == 0
+                        ? 'Not OK'
+                        : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Ganti Baju & Sepatu</span>
@@ -65,7 +83,11 @@
                   -
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.weighing.cloth_shoe"
+                    class="mx-2"
+                    :label="form.weighing.cloth_shoe == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Lingkungan & Meja Kerja</span>
@@ -79,7 +101,11 @@
                   -
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.weighing.environt_table"
+                    class="mx-2"
+                    :label="form.weighing.environt_table == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>RH , Temp & Press Diff.</span>
@@ -93,13 +119,15 @@
                   -
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.weighing.rh_temp_press"
+                    class="mx-2"
+                    :label="form.weighing.rh_temp_press == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
               </v-row>
-            </v-form>
-          </v-window-item>
-          <v-window-item :value="2">
-            <v-form>
+            </v-window-item>
+            <v-window-item :value="2">
               <v-row
                 class="primary--text subtitle-1 font-weight-medium"
                 align="center"
@@ -114,10 +142,20 @@
                 </v-col>
                 <v-col cols="12" sm="3">As formula</v-col>
                 <v-col cols="12" sm="2">
-                  <v-text-field outlined />
+                  <v-text-field
+                    v-model="form.d_b_rm_sa.dumping_rm.total"
+                    :rules="[v => !!v || 'This is required']"
+                    outlined
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.dumping_rm.status"
+                    class="mx-2"
+                    :label="
+                      form.d_b_rm_sa.dumping_rm.status == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Ganti Baju & Sepatu</span>
@@ -131,7 +169,11 @@
                   -
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.cloth_shoe"
+                    class="mx-2"
+                    :label="form.d_b_rm_sa.cloth_shoe == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Lingkungan & Meja Kerja</span>
@@ -145,7 +187,13 @@
                   -
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.environt_table"
+                    class="mx-2"
+                    :label="
+                      form.d_b_rm_sa.environt_table == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>RH , Temp & Press Diff.</span>
@@ -159,13 +207,15 @@
                   -
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.rh_temp_press"
+                    class="mx-2"
+                    :label="form.d_b_rm_sa.rh_temp_press == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
               </v-row>
-            </v-form>
-          </v-window-item>
-          <v-window-item :value="3">
-            <v-form>
+            </v-window-item>
+            <v-window-item :value="3">
               <v-row
                 class="primary--text subtitle-1 font-weight-medium"
                 align="center"
@@ -180,7 +230,11 @@
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.set_autosampler"
+                    class="mx-2"
+                    :label="form.filling.set_autosampler == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Setting Filling</span>
@@ -191,10 +245,20 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field outlined />
+                  <v-text-field
+                    v-model="form.filling.set_filling.sachet_gr"
+                    :rules="[v => !!v || 'This is required']"
+                    outlined
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.set_filling.status"
+                    class="mx-2"
+                    :label="
+                      form.filling.set_filling.status == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Material Alufoil</span>
@@ -214,10 +278,22 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field outlined />
+                  <v-text-field
+                    v-model="form.filling.material_alufoil.foil"
+                    :rules="[v => !!v || 'This is required']"
+                    outlined
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.material_alufoil.status"
+                    class="mx-2"
+                    :label="
+                      form.filling.material_alufoil.status == 0
+                        ? 'Not OK'
+                        : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Setting Code sachet FG</span>
@@ -237,10 +313,24 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field outlined />
+                  <v-text-field
+                    v-model="
+                      form.filling.set_code_sachet_fg.standard_coding_sachet
+                    "
+                    :rules="[v => !!v || 'This is required']"
+                    outlined
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.set_code_sachet_fg.status"
+                    class="mx-2"
+                    :label="
+                      form.filling.set_code_sachet_fg.status == 0
+                        ? 'Not OK'
+                        : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Setting Net Weight</span>
@@ -251,10 +341,20 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field outlined />
+                  <v-text-field
+                    v-model="form.filling.set_net_weight.set_weight"
+                    :rules="[v => !!v || 'This is required']"
+                    outlined
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.set_net_weight.status"
+                    class="mx-2"
+                    :label="
+                      form.filling.set_net_weight.status == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Dosing Nitrogen</span>
@@ -264,7 +364,11 @@
                   -
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.dosing_nitrogen"
+                    class="mx-2"
+                    :label="form.filling.dosing_nitrogen == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Pengecekkan Vertical & Horizontal Seal</span>
@@ -287,13 +391,17 @@
                   <span>-</span>
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.filling.ver_hor_seal_check"
+                    class="mx-2"
+                    :label="
+                      form.filling.ver_hor_seal_check == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
               </v-row>
-            </v-form>
-          </v-window-item>
-          <v-window-item :value="4">
-            <v-form>
+            </v-window-item>
+            <v-window-item :value="4">
               <v-row
                 class="primary--text subtitle-1 font-weight-medium"
                 align="center"
@@ -308,7 +416,11 @@
                 <v-col cols="12" sm="3">As programme</v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.set_xray"
+                    class="mx-2"
+                    :label="form.packing.set_xray == 0 ? 'Not OK' : 'OK'"
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Ganti Scoop</span>
@@ -319,13 +431,23 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
-                  <v-text-field outlined />
+                  <v-text-field
+                    v-model="form.packing.scoop_change.number"
+                    :rules="[v => !!v || 'This is required']"
+                    outlined
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.scoop_change.status"
+                    class="mx-2"
+                    :label="
+                      form.packing.scoop_change.status == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
-                  <span>Ganti Setting Code Folding Boxu</span>
+                  <span>Ganti Setting Code Folding Box</span>
                   <br />
                   <span class="caption black--text">
                     (Standard Coding Folding Box)
@@ -342,10 +464,25 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2">
-                  <v-text-field outlined />
+                  <v-text-field
+                    v-model="
+                      form.packing.set_code_folding_box
+                        .standard_coding_folding_box
+                    "
+                    :rules="[v => !!v || 'This is required']"
+                    outlined
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.set_code_folding_box.status"
+                    class="mx-2"
+                    :label="
+                      form.packing.set_code_folding_box.status == 0
+                        ? 'Not OK'
+                        : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Setting Code Outer Carton</span>
@@ -365,10 +502,25 @@
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2">
-                  <v-text-field outlined />
+                  <v-text-field
+                    v-model="
+                      form.packing.set_code_outer_carton
+                        .standard_coding_outer_carton
+                    "
+                    :rules="[v => !!v || 'This is required']"
+                    outlined
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.set_code_outer_carton.status"
+                    class="mx-2"
+                    :label="
+                      form.packing.set_code_outer_carton.status == 0
+                        ? 'Not OK'
+                        : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Stock Glue Folding Box</span>
@@ -378,7 +530,13 @@
                   -
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.stock_glue_folding_box"
+                    class="mx-2"
+                    :label="
+                      form.packing.stock_glue_folding_box == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
                 <v-col cols="12" sm="4">
                   <span>Stock Tinta Print Outer Carton</span>
@@ -388,15 +546,21 @@
                   -
                 </v-col>
                 <v-col cols="12" sm="3">
-                  <v-checkbox class="mx-2" label="Not OK" />
+                  <v-checkbox
+                    v-model="form.packing.stock_int_outer_carbon"
+                    class="mx-2"
+                    :label="
+                      form.packing.stock_int_outer_carbon == 0 ? 'Not OK' : 'OK'
+                    "
+                  />
                 </v-col>
               </v-row>
-            </v-form>
-          </v-window-item>
-        </v-window>
+            </v-window-item>
+          </v-window>
+        </v-form>
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">
-        <v-btn block large class="grey lighten-1" dark @click="discard()">
+        <v-btn block large class="grey lighten-1" dark @click="save()">
           save as draft
         </v-btn>
       </v-col>
@@ -405,7 +569,7 @@
           block
           large
           color="primary"
-          @click="step === 4 ? submit() : save()"
+          @click="step === 4 ? submit() : next()"
         >
           {{ step === 4 ? 'submit' : 'next' }}
         </v-btn>
@@ -414,12 +578,79 @@
   </v-container>
 </template>
 <script>
+import constant from '../../../constant'
 export default {
   middleware: ['user'],
   data() {
     return {
       step: 1,
-      title: 'WEIGHING AREA'
+      title: 'WEIGHING AREA',
+      form: {
+        weighing: {
+          bag_rm_condition: 0,
+          rm_completeness: {
+            total: null,
+            status: 0
+          },
+          cloth_shoe: 0,
+          environt_table: 0,
+          rh_temp_press: 0
+        },
+        d_b_rm_sa: {
+          dumping_rm: {
+            total: null,
+            status: 0
+          },
+          cloth_shoe: 0,
+          environt_table: 0,
+          rh_temp_press: 0
+        },
+        filling: {
+          set_autosampler: 0,
+          set_filling: {
+            sachet_gr: null,
+            status: 0
+          },
+          material_alufoil: {
+            foil: null,
+            status: 0,
+            image: null
+          },
+          set_code_sachet_fg: {
+            standard_coding_sachet: null,
+            status: 0,
+            image: null
+          },
+          set_net_weight: {
+            set_weight: null,
+            status: 0
+          },
+          dosing_nitrogen: 0,
+          ver_hor_seal_check: {
+            status: 0,
+            image: null
+          }
+        },
+        packing: {
+          set_xray: 0,
+          scoop_change: {
+            number: null,
+            status: 0
+          },
+          set_code_folding_box: {
+            standard_coding_folding_box: null,
+            status: 0,
+            image: null
+          },
+          set_code_outer_carton: {
+            standard_coding_outer_carton: null,
+            status: 0,
+            image: null
+          },
+          stock_glue_folding_box: 0,
+          stock_int_outer_carbon: 0
+        }
+      }
     }
   },
   watch: {
@@ -442,14 +673,31 @@ export default {
       }
     }
   },
+  created() {
+    if (process.client) {
+      const form = localStorage.getItem(constant.FISRT_FORM_P_PRO_NEXT_PRODUCT)
+      if (form !== undefined && form !== null) {
+        this.form = { ...JSON.parse(form) }
+      }
+    }
+  },
   methods: {
     save() {
+      localStorage.setItem(
+        constant.FISRT_FORM_P_PRO_NEXT_PRODUCT,
+        JSON.stringify(this.form)
+      )
+    },
+    next() {
+      this.save()
       this.step++
     },
-    discard() {
-      this.$router.push('/inspection')
-    },
-    submit() {}
+    submit() {
+      if (this.$refs.formPrepare.validate()) {
+        this.save()
+        this.$router.push('/inspection')
+      }
+    }
   }
 }
 </script>

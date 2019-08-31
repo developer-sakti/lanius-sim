@@ -39,7 +39,8 @@
                     </span>
                     <br />
                     <span class="subtitle-1 grey--text">
-                      CURRENT PRO : -
+                      CURRENT PRO :
+                      {{ firstFormPrO === null ? '-' : firstFormPrO }}
                     </span>
                   </v-list-item-content>
                 </template>
@@ -242,6 +243,7 @@
   </v-container>
 </template>
 <script>
+import constant from '../../constant'
 import user from '~/mixins/user'
 export default {
   mixins: [user],
@@ -325,12 +327,21 @@ export default {
         },
         { id: 14, subform: 'Catatan', path: '/inspection/form3/catatan' }
       ],
+      firstFormPrO: null,
+      secondFormPrO: null,
+      thirdFormPrO: null,
       dialogCloseClearence: false
     }
   },
   created() {
     if (this.user === null) {
       this.dialogProfile = true
+    }
+    if (process.client) {
+      const firstForm = localStorage.getItem(constant.FISRT_FORM_I_PRODUCTION)
+      if (firstForm !== undefined && firstForm !== null) {
+        this.firstFormPrO = JSON.parse(firstForm).pro_no
+      }
     }
   }
 }
