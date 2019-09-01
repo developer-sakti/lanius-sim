@@ -17,9 +17,9 @@
           <v-col cols="12" sm="3">Standart</v-col>
           <v-col cols="12" sm="3">Status</v-col>
         </v-row>
-        <v-window v-model="step">
-          <v-window-item :value="1">
-            <v-form>
+        <v-form ref="formClearence">
+          <v-window v-model="step">
+            <v-window-item :value="1">
               <v-row
                 class="primary--text subtitle-1 font-weight-medium"
                 align="center"
@@ -78,10 +78,8 @@
                   />
                 </v-col>
               </v-row>
-            </v-form>
-          </v-window-item>
-          <v-window-item :value="2">
-            <v-form>
+            </v-window-item>
+            <v-window-item :value="2">
               <v-row
                 class="primary--text subtitle-1 font-weight-medium"
                 align="center"
@@ -176,10 +174,8 @@
                   />
                 </v-col>
               </v-row>
-            </v-form>
-          </v-window-item>
-          <v-window-item :value="3">
-            <v-form>
+            </v-window-item>
+            <v-window-item :value="3">
               <v-row
                 class="primary--text subtitle-1 font-weight-medium"
                 align="center"
@@ -263,10 +259,8 @@
                   />
                 </v-col>
               </v-row>
-            </v-form>
-          </v-window-item>
-          <v-window-item :value="4">
-            <v-form>
+            </v-window-item>
+            <v-window-item :value="4">
               <v-row
                 class="primary--text subtitle-1 font-weight-medium"
                 align="center"
@@ -344,9 +338,9 @@
                   />
                 </v-col>
               </v-row>
-            </v-form>
-          </v-window-item>
-        </v-window>
+            </v-window-item>
+          </v-window>
+        </v-form>
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">
         <v-btn block large class="grey lighten-1" dark @click="submit()">
@@ -458,8 +452,11 @@ export default {
       this.step++
     },
     submit() {
-      this.save()
-      this.$router.push('/inspection')
+      if (this.$refs.formClearence.validate()) {
+        this.snackbar = true
+        this.save()
+        this.$router.push('/inspection')
+      }
     }
   }
 }

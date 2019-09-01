@@ -560,7 +560,7 @@
         </v-form>
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">
-        <v-btn block large class="grey lighten-1" dark @click="save()">
+        <v-btn block large class="grey lighten-1" dark @click="draft()">
           save as draft
         </v-btn>
       </v-col>
@@ -697,6 +697,10 @@ export default {
         this.save()
         this.$router.push('/inspection')
       }
+    },
+    draft() {
+      this.save()
+      this.$router.push('/inspection')
     }
   }
 }

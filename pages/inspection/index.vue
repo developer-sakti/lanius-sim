@@ -140,78 +140,103 @@
         </v-row>
       </v-window-item>
       <v-window-item :value="2">
-        <v-row class="mt-3">
-          <v-col cols="12" sm="12" md="12">
-            <v-list>
-              <v-list-group>
-                <template slot="activator">
-                  <v-list-item-title class="title blue--text">
-                    SAFETY FILLING PACKING
-                  </v-list-item-title>
+        <v-form ref="formCondition" lazy-validation>
+          <v-row class="mt-5" justify="center">
+            <v-col cols="12" sm="5" class="py-0">
+              <v-select
+                v-model="wiget"
+                label="Wiget"
+                :rules="[v => !!v || 'Wiget is required']"
+                outlined
+                :items="wigets"
+                item-text="name"
+                item-value="id"
+              />
+            </v-col>
+            <v-col cols="12" sm="5" class="py-0">
+              <v-select
+                v-model="category"
+                :items="categories"
+                :rules="[v => !!v || 'Category is required']"
+                item-text="name"
+                item-value="id"
+                label="Category"
+                outlined
+              />
+            </v-col>
+            <v-col cols="12" sm="5" class="py-0">
+              <v-select
+                v-model="parameter"
+                :items="parameters"
+                :rules="[v => !!v || 'Parameter is required']"
+                item-text="name"
+                item-value="id"
+                label="Parameter"
+                outlined
+              />
+            </v-col>
+            <v-col cols="12" sm="5" class="py-0">
+              <v-select
+                label="Shift"
+                outlined
+                :rules="[v => !!v || 'Shift is required']"
+                :items="shifts"
+                item-text="name"
+                item-value="id"
+              />
+            </v-col>
+            <v-col cols="12" sm="5" class="py-0">
+              <v-menu
+                ref="inputDate"
+                v-model="datePicker"
+                :close-on-content-click="true"
+                transition="scale-transition"
+                offset-y
+                full-width
+                min-width="290px"
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="date"
+                    label="Date"
+                    :rules="[v => !!v || 'Date is required']"
+                    required
+                    outlined
+                    append-icon="mdi-calendar"
+                    readonly
+                    v-on="on"
+                  />
                 </template>
-                <v-card>
-                  a
-                </v-card>
-              </v-list-group>
-            </v-list>
-          </v-col>
-          <v-col cols="12" sm="12" md="12">
-            <v-list>
-              <v-list-group>
-                <template slot="activator">
-                  <v-list-item-title class="title blue--text">
-                    QUALITY FILLING
-                  </v-list-item-title>
-                </template>
-                <v-card>
-                  a
-                </v-card>
-              </v-list-group>
-            </v-list>
-          </v-col>
-          <v-col cols="12" sm="12" md="12">
-            <v-list>
-              <v-list-group>
-                <template slot="activator">
-                  <v-list-item-title class="title blue--text">
-                    QUALITY PACKING
-                  </v-list-item-title>
-                </template>
-                <v-card>
-                  a
-                </v-card>
-              </v-list-group>
-            </v-list>
-          </v-col>
-          <v-col cols="12" sm="12" md="12">
-            <v-list>
-              <v-list-group>
-                <template slot="activator">
-                  <v-list-item-title class="title blue--text">
-                    COST FILLING
-                  </v-list-item-title>
-                </template>
-                <v-card>
-                  a
-                </v-card>
-              </v-list-group>
-            </v-list>
-          </v-col>
-          <v-col cols="12" sm="12" md="12">
-            <v-list>
-              <v-list-group>
-                <template slot="activator">
-                  <v-list-item-title class="title blue--text">
-                    DELIVERY FILLING
-                  </v-list-item-title>
-                </template>
-                <v-card>
-                  a
-                </v-card>
-              </v-list-group>
-            </v-list>
-          </v-col>
-        </v-row>
+                <v-date-picker
+                  v-if="datePicker"
+                  v-model="date"
+                  reactive
+                  no-title
+                  scrollable
+                />
+              </v-menu>
+            </v-col>
+            <v-col cols="12" sm="5" class="py-0">
+              <v-text-field
+                type="number"
+                :rules="[v => !!v || 'Value is required']"
+                label="Value"
+                outlined
+              />
+            </v-col>
+            <v-col cols="12" sm="10">
+              <v-btn
+                block
+                large
+                color="primary"
+                class="subtitle-2 font-weight-bold"
+                @click="saveSimTwo()"
+              >
+                Save
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-form>
       </v-window-item>
     </v-window>
     <v-dialog v-model="dialogCloseClearence" max-width="80vw">
@@ -330,7 +355,38 @@ export default {
       firstFormPrO: null,
       secondFormPrO: null,
       thirdFormPrO: null,
-      dialogCloseClearence: false
+      dialogCloseClearence: false,
+      wigets: [],
+      wiget: null,
+      categories: [],
+      category: null,
+      parameters: [],
+      parameter: null,
+      shifts: [
+        { id: 1, name: 'Shift 1' },
+        { id: 2, name: 'Shift 2' },
+        { id: 3, name: 'Shift 3' }
+      ],
+      shift: null,
+      date: null,
+      value: null,
+      datePicker: false
+    }
+  },
+  watch: {
+    wiget(value) {
+      this.$axios
+        .get(process.env.SIM_TWO_API + '/api/categories/?widget=' + value)
+        .then(res => {
+          this.categories = res.data.results
+        })
+    },
+    category(value) {
+      this.$axios
+        .get(process.env.SIM_TWO_API + '/api/parameters/?category=' + value)
+        .then(res => {
+          this.parameters = res.data.results
+        })
     }
   },
   created() {
@@ -338,9 +394,42 @@ export default {
       this.dialogProfile = true
     }
     if (process.client) {
+      this.setup()
       const firstForm = localStorage.getItem(constant.FISRT_FORM_I_PRODUCTION)
       if (firstForm !== undefined && firstForm !== null) {
         this.firstFormPrO = JSON.parse(firstForm).pro_no
+      }
+    }
+  },
+  methods: {
+    setup() {
+      this.$axios
+        .get(
+          process.env.SIM_TWO_API +
+            '/api/widgets/?sim=' +
+            process.env.SIM_TWO_ID
+        )
+        .then(res => {
+          this.wigets = res.data.results
+        })
+    },
+    saveSimTwo() {
+      if (this.$refs.formCondition.validate()) {
+        this.snackbar = true
+        this.$axios
+          .post(process.env.SIM_TWO_API + '/bff/submissions', {
+            shift: this.shift,
+            date: this.date,
+            submissions: [
+              {
+                parameter: this.parameter,
+                value: this.value
+              }
+            ]
+          })
+          .then(res => {
+            console.log(res)
+          })
       }
     }
   }

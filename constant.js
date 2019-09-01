@@ -1,4 +1,5 @@
 export default {
+  SIM_TWO_TOKEN: 'token',
   // first form
   FISRT_FORM_I_PRODUCTION: 'first.i_production',
   FISRT_FORM_C_PRO_PREVIOUS_PRODUCT: 'first.c_pro_previous_product',
