@@ -79,7 +79,8 @@
                     </span>
                     <br />
                     <span class="subtitle-1 grey--text">
-                      CURRENT PRO : -
+                      CURRENT PRO :
+                      {{ secondFormPrO === null ? '-' : secondFormPrO }}
                     </span>
                   </v-list-item-content>
                 </template>
@@ -113,7 +114,8 @@
                     </span>
                     <br />
                     <span class="subtitle-1 grey--text">
-                      CURRENT PRO : -
+                      CURRENT PRO :
+                      {{ thirdFormPrO === null ? '-' : thirdFormPrO }}
                     </span>
                   </v-list-item-content>
                 </template>
@@ -375,18 +377,18 @@ export default {
   },
   watch: {
     wiget(value) {
-      this.$axios
-        .get(process.env.SIM_TWO_API + '/api/categories/?widget=' + value)
-        .then(res => {
-          this.categories = res.data.results
-        })
+      // this.$axios
+      //   .get(process.env.SIM_TWO_API + '/api/categories/?widget=' + value)
+      //   .then(res => {
+      //     this.categories = res.data.results
+      //   })
     },
     category(value) {
-      this.$axios
-        .get(process.env.SIM_TWO_API + '/api/parameters/?category=' + value)
-        .then(res => {
-          this.parameters = res.data.results
-        })
+      // this.$axios
+      //   .get(process.env.SIM_TWO_API + '/api/parameters/?category=' + value)
+      //   .then(res => {
+      //     this.parameters = res.data.results
+      //   })
     }
   },
   created() {
@@ -399,38 +401,46 @@ export default {
       if (firstForm !== undefined && firstForm !== null) {
         this.firstFormPrO = JSON.parse(firstForm).pro_no
       }
+      const secondForm = localStorage.getItem(constant.SECOND_FORM_I_PRODUCTION)
+      if (secondForm !== undefined && secondForm !== null) {
+        this.secondFormPrO = JSON.parse(secondForm).pro_no
+      }
+      const thirdForm = localStorage.getItem(constant.THIRD_FORM_I_PRODUCTION)
+      if (thirdForm !== undefined && thirdForm !== null) {
+        this.thirdFormPrO = JSON.parse(thirdForm).pro_no
+      }
     }
   },
   methods: {
     setup() {
-      this.$axios
-        .get(
-          process.env.SIM_TWO_API +
-            '/api/widgets/?sim=' +
-            process.env.SIM_TWO_ID
-        )
-        .then(res => {
-          this.wigets = res.data.results
-        })
+      // this.$axios
+      //   .get(
+      //     process.env.SIM_TWO_API +
+      //       '/api/widgets/?sim=' +
+      //       process.env.SIM_TWO_ID
+      //   )
+      //   .then(res => {
+      //     this.wigets = res.data.results
+      //   })
     },
     saveSimTwo() {
-      if (this.$refs.formCondition.validate()) {
-        this.snackbar = true
-        this.$axios
-          .post(process.env.SIM_TWO_API + '/bff/submissions', {
-            shift: this.shift,
-            date: this.date,
-            submissions: [
-              {
-                parameter: this.parameter,
-                value: this.value
-              }
-            ]
-          })
-          .then(res => {
-            console.log(res)
-          })
-      }
+      // if (this.$refs.formCondition.validate()) {
+      //   this.snackbar = true
+      //   this.$axios
+      //     .post(process.env.SIM_TWO_API + '/bff/submissions', {
+      //       shift: this.shift,
+      //       date: this.date,
+      //       submissions: [
+      //         {
+      //           parameter: this.parameter,
+      //           value: this.value
+      //         }
+      //       ]
+      //     })
+      //     .then(res => {
+      //       console.log(res)
+      //     })
+      // }
     }
   }
 }

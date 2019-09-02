@@ -14,11 +14,11 @@
       <v-col cols="10" sm="10" class="text-center title primary--text pt-0">
       </v-col>
       <v-col cols="10" sm="10">
-        <v-form>
+        <v-form ref="thirdFormInformation" lazy-validation>
           <v-menu
             ref="inputDate"
             v-model="datePicker"
-            :close-on-content-click="false"
+            :close-on-content-click="true"
             transition="scale-transition"
             offset-y
             full-width
@@ -26,6 +26,8 @@
           >
             <template v-slot:activator="{ on }">
               <v-text-field
+                v-model="form.date"
+                :rules="[v => v !== null || 'This field is required']"
                 label="Tanggal"
                 required
                 outlined
@@ -34,42 +36,97 @@
                 v-on="on"
               />
             </template>
-            <v-date-picker v-if="datePicker" reactive no-title scrollable />
+            <v-date-picker
+              v-if="datePicker"
+              v-model="form.date"
+              reactive
+              no-title
+              scrollable
+            />
           </v-menu>
-
-          <v-text-field label="Nama Produk" required outlined />
+          <v-text-field
+            v-model="form.product_name"
+            :rules="[v => v !== null || 'This field is required']"
+            label="Nama Produk"
+            required
+            outlined
+          />
           <v-select
+            v-model="form.size"
+            :rules="[v => v !== null || 'This field is required']"
             label="Size"
             required
             outlined
             :items="['100gr', '250gr']"
           />
-          <v-text-field label="PO No" required outlined />
-          <v-text-field label="Batch" required outlined />
+          <v-text-field
+            v-model="form.pro_no"
+            :rules="[v => v !== null || 'This field is required']"
+            label="PO No"
+            required
+            outlined
+          />
+          <v-text-field
+            v-model="form.batch_no"
+            :rules="[v => v !== null || 'This field is required']"
+            label="Batch"
+            required
+            outlined
+          />
         </v-form>
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">
-        <v-btn block large class="grey lighten-1" dark @click="discard()">
+        <v-btn block large class="grey lighten-1" dark @click="draft()">
           save as draft
         </v-btn>
       </v-col>
       <v-col cols="10" sm="5" class="pt-0">
-        <v-btn block large color="primary">submit</v-btn>
+        <v-btn block large color="primary" @click="store()">submit</v-btn>
       </v-col>
     </v-row>
   </v-container>
 </template>
 <script>
+import constant from '../../../constant'
 export default {
   middleware: ['user'],
   data() {
     return {
-      datePicker: false
+      datePicker: false,
+      form: {
+        date: null,
+        product_name: null,
+        size: null,
+        pro_no: null,
+        batch_no: null
+      }
+    }
+  },
+  created() {
+    if (process.client) {
+      const form = localStorage.getItem(constant.THIRD_FORM_I_PRODUCTION)
+      if (form !== undefined && form !== null) {
+        this.form = { ...JSON.parse(form) }
+      }
     }
   },
   methods: {
-    discard() {
+    draft() {
+      this.save()
       this.$router.push('/inspection')
+    },
+    store() {
+      if (this.$refs.thirdFormInformation.validate()) {
+        this.snackbar = true
+        this.save()
+        this.$router.push('/inspection')
+      }
+    },
+    save() {
+      localStorage.setItem(
+        constant.THIRD_FORM_I_PRODUCTION,
+        JSON.stringify(this.form)
+      )
     }
   }
 }
