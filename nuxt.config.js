@@ -85,10 +85,10 @@ export default {
     extend(config, ctx) {}
   },
   env: {
-    // SIM_TWO_ID: 'ce53089c-057b-45e6-90e4-3e0a4858bd98',
-    // SIM_TWO_API: 'http://192.168.1.6:8000',
+    SIM_TWO_ID: 'ce53089c-057b-45e6-90e4-3e0a4858bd98',
+    SIM_TWO_API: 'http://167.179.102.43:8000',
     SIM_TWO_USERNAME: 'sentul',
     SIM_TWO_PASSWORD: 'laniuslab',
-    SIM_ONE_API: 'http://192.168.1.3:1337'
+    SIM_ONE_API: 'http://192.168.13.107:1337'
   }
 }

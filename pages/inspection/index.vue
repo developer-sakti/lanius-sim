@@ -663,25 +663,37 @@ export default {
         for (let i = 14; i <= 22; i++) {
           this.hourAllowed.push(i)
         }
-      } else {
-        for (let i = 22; i <= 6; i++) {
+      } else if (value === 3) {
+        for (let i = 0; i <= 6; i++) {
+          this.hourAllowed.push(i)
+        }
+        for (let i = 22; i <= 23; i++) {
           this.hourAllowed.push(i)
         }
       }
+      this.getTotal()
     },
     widget(value) {
-      // this.$axios
-      //   .get(process.env.SIM_TWO_API + '/api/categories/?widget=' + value)
-      //   .then(res => {
-      //     this.categories = res.data.results
-      //   })
+      this.$axios
+        .get(process.env.SIM_TWO_API + '/api/categories/?widget=' + value)
+        .then(res => {
+          this.categories = res.data.results
+        })
+      this.getTotal()
     },
     category(value) {
-      // this.$axios
-      //   .get(process.env.SIM_TWO_API + '/api/parameters/?category=' + value)
-      //   .then(res => {
-      //     this.parameters = res.data.results
-      //   })
+      this.$axios
+        .get(process.env.SIM_TWO_API + '/api/parameters/?category=' + value)
+        .then(res => {
+          this.parameters = res.data.results
+        })
+      this.getTotal()
+    },
+    parameter() {
+      this.getTotal()
+    },
+    date() {
+      this.getTotal()
     },
     value(value) {
       this.totalValue = parseInt(this.tempTotalValue) + parseInt(value)
@@ -741,55 +753,52 @@ export default {
         })
     },
     setup() {
-      // this.$axios
-      //   .get(
-      //     process.env.SIM_TWO_API +
-      //       '/api/widgets/?sim=' +
-      //       process.env.SIM_TWO_ID
-      //   )
-      //   .then(res => {
-      //     this.widgets = res.data.results
-      //   })
+      this.$axios
+        .get(
+          process.env.SIM_TWO_API +
+            '/api/widgets/?sim=' +
+            process.env.SIM_TWO_ID
+        )
+        .then(res => {
+          this.widgets = res.data.results
+        })
     },
     saveSimTwo() {
       if (this.$refs.formCondition.validate()) {
-        // this.$axios
-        //   .post(process.env.SIM_TWO_API + '/bff/submissions', {
-        //     shift: this.shift,
-        //     date: this.date,
-        //     submissions: [
-        //       {
-        //         parameter: this.parameter,
-        //         value: this.value
-        //       }
-        //     ]
-        //   })
-        //   .then(res => {
-        //     console.log(res)
-        //   })
+        this.$axios
+          .post(process.env.SIM_TWO_API + '/bff/submissions', {
+            shift: this.shift,
+            date: this.date,
+            submissions: [
+              {
+                parameter: this.parameter,
+                value: this.totalValue
+              }
+            ]
+          })
+          .then(res => {
+            console.log(res)
+          })
       }
     },
     saveSimOne() {
       this.loadingDraft = true
-      // if (this.$refs.formCondition.validate()) {
-      this.$axios
-        .post(process.env.SIM_ONE_API + '/operationalconditions', {
-          // widget: this.widget,
-          // category: this.category,
-          // parameter: this.parameter,
-          widget: 'this.widget',
-          category: 'this.category',
-          parameter: 'this.parameter',
-          date: this.date,
-          time: this.time,
-          shift: this.shift,
-          value: this.value
-        })
-        .then(res => {
-          this.loadingDraft = false
-          console.log(res)
-        })
-      // }
+      if (this.$refs.formCondition.validate()) {
+        this.$axios
+          .post(process.env.SIM_ONE_API + '/operationalconditions', {
+            widget: this.widget,
+            category: this.category,
+            parameter: this.parameter,
+            date: this.date,
+            time: this.time,
+            shift: this.shift,
+            value: this.value
+          })
+          .then(res => {
+            this.loadingDraft = false
+            this.$refs.formCondition.reset()
+          })
+      }
     },
     submitFirstForm() {
       if (this.$refs.closeProForm1.validate()) {
