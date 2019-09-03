@@ -5,7 +5,7 @@
         <v-img src="/logo.svg" width="80" height="150" />
       </v-avatar>
       <span class="primary--text font-weight-bold ml-5 headline">
-        NUTRICIA SENTUL
+        E-SIM 1 BiB AREA - SUGIZINDO SENTUL
       </span>
     </v-app-bar>
     <v-content>

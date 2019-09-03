@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="10" sm="10" class="text-center title primary--text py-0">
-        CLEARENCE PrO Produk Sebelumnya
+        CLEARANCE PrO Produk Sebelumnya
       </v-col>
       <v-col
         cols="10"
@@ -17,7 +17,7 @@
           <v-col cols="12" sm="3">Standart</v-col>
           <v-col cols="12" sm="3">Status</v-col>
         </v-row>
-        <v-form ref="formClearence">
+        <v-form ref="formClearance">
           <v-window v-model="step">
             <v-window-item :value="1">
               <v-row
@@ -452,7 +452,7 @@ export default {
       this.step++
     },
     submit() {
-      if (this.$refs.formClearence.validate()) {
+      if (this.$refs.formClearance.validate()) {
         this.snackbar = true
         this.save()
         this.$router.push('/inspection')

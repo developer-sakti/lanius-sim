@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="10" sm="10" class="text-center title primary--text pb-0">
-        CHECKLIST CLEARENCE SMALL SACHET
+        CHECKLIST CLEARANCE SMALL SACHET
       </v-col>
       <v-col
         cols="10"

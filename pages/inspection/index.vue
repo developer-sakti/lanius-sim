@@ -35,7 +35,7 @@
                 <template slot="activator">
                   <v-list-item-content>
                     <span class="title blue--text">
-                      CHECKLIST CLEARENCE SMALL SACHET
+                      CHECKLIST CLEARANCE SMALL SACHET
                     </span>
                     <br />
                     <span class="subtitle-1 grey--text">
@@ -58,9 +58,10 @@
                 <v-list-item>
                   <v-list-item-content class="blue--text">
                     <v-btn
+                      :disabled="firstFormPrO === null ? true : false"
                       large
                       color="primary"
-                      @click="dialogCloseClearence = true"
+                      @click="dialogCloseClearance = true"
                     >
                       submit & close PrO
                     </v-btn>
@@ -98,7 +99,14 @@
                 </v-list-item>
                 <v-list-item>
                   <v-list-item-content class="blue--text">
-                    <v-btn large color="primary">submit & close PrO</v-btn>
+                    <v-btn
+                      :disabled="secondFormPrO === null ? true : false"
+                      large
+                      color="primary"
+                      @click="dialogCloseClearance = true"
+                    >
+                      submit & close PrO
+                    </v-btn>
                   </v-list-item-content>
                 </v-list-item>
               </v-list-group>
@@ -133,7 +141,14 @@
                 </v-list-item>
                 <v-list-item>
                   <v-list-item-content class="blue--text">
-                    <v-btn large color="primary">submit & close PrO</v-btn>
+                    <v-btn
+                      :disabled="thirdFormPrO === null ? true : false"
+                      large
+                      color="primary"
+                      @click="dialogCloseClearance = true"
+                    >
+                      submit & close PrO
+                    </v-btn>
                   </v-list-item-content>
                 </v-list-item>
               </v-list-group>
@@ -146,11 +161,11 @@
           <v-row class="mt-5" justify="center">
             <v-col cols="12" sm="5" class="py-0">
               <v-select
-                v-model="wiget"
-                label="Wiget"
-                :rules="[v => !!v || 'Wiget is required']"
+                v-model="widget"
+                label="widget"
+                :rules="[v => !!v || 'widget is required']"
                 outlined
-                :items="wigets"
+                :items="widgets"
                 item-text="name"
                 item-value="id"
               />
@@ -179,6 +194,7 @@
             </v-col>
             <v-col cols="12" sm="5" class="py-0">
               <v-select
+                v-model="shift"
                 label="Shift"
                 outlined
                 :rules="[v => !!v || 'Shift is required']"
@@ -219,29 +235,86 @@
               </v-menu>
             </v-col>
             <v-col cols="12" sm="5" class="py-0">
+              <v-menu
+                ref="inputTime"
+                v-model="timePicker"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                full-width
+                min-width="290px"
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="time"
+                    :rules="[v => !!v || 'Jam Pengambilan is required']"
+                    label="Jam Pengambilan"
+                    required
+                    outlined
+                    append-icon="mdi-clock-outline"
+                    readonly
+                    v-on="on"
+                  />
+                </template>
+                <v-time-picker
+                  v-if="timePicker"
+                  v-model="time"
+                  reactive
+                  format="24hr"
+                  :allowed-hours="hourAllowed"
+                  use-seconds
+                  @click:seconds="$refs.inputTime.save(time)"
+                />
+              </v-menu>
+            </v-col>
+            <v-col cols="12" sm="5" class="py-0">
               <v-text-field
+                v-model="value"
                 type="number"
                 :rules="[v => !!v || 'Value is required']"
                 label="Value"
                 outlined
               />
             </v-col>
-            <v-col cols="12" sm="10">
+            <v-col cols="12" sm="5" class="py-0">
+              <v-text-field
+                v-model="totalValue"
+                readonly
+                type="number"
+                label="Total Value"
+                outlined
+              />
+            </v-col>
+            <v-col cols="12" sm="5">
+              <v-btn
+                block
+                :loading="loadingDraft"
+                large
+                dark
+                color="grey"
+                class="subtitle-2 font-weight-bold"
+                @click="saveSimOne()"
+              >
+                save as draft
+              </v-btn>
+            </v-col>
+            <v-col cols="12" sm="5">
               <v-btn
                 block
                 large
+                :loading="loadingSubmit"
                 color="primary"
                 class="subtitle-2 font-weight-bold"
                 @click="saveSimTwo()"
               >
-                Save
+                submit to sim2
               </v-btn>
             </v-col>
           </v-row>
         </v-form>
       </v-window-item>
     </v-window>
-    <v-dialog v-model="dialogCloseClearence" max-width="80vw">
+    <v-dialog v-model="dialogCloseClearance" max-width="80vw">
       <v-card>
         <v-card-title class="primary white--text">
           <v-row justify="center">
@@ -279,6 +352,8 @@ export default {
     return {
       menu: 1,
       valid: true,
+      loadingDraft: false,
+      loadingSubmit: false,
       form1: [
         {
           id: 1,
@@ -287,8 +362,8 @@ export default {
         },
         {
           id: 2,
-          subform: 'CLEARENCE PrO Produk Sebelumnya',
-          path: '/inspection/form1/clearence'
+          subform: 'CLEARaNCE PrO Produk Sebelumnya',
+          path: '/inspection/form1/clearance'
         },
         {
           id: 3,
@@ -357,9 +432,9 @@ export default {
       firstFormPrO: null,
       secondFormPrO: null,
       thirdFormPrO: null,
-      dialogCloseClearence: false,
-      wigets: [],
-      wiget: null,
+      dialogCloseClearance: false,
+      widgets: [],
+      widget: null,
       categories: [],
       category: null,
       parameters: [],
@@ -372,11 +447,32 @@ export default {
       shift: null,
       date: null,
       value: null,
-      datePicker: false
+      totalValue: 0,
+      tempTotalValue: 4,
+      timePicker: false,
+      datePicker: false,
+      time: null,
+      hourAllowed: []
     }
   },
   watch: {
-    wiget(value) {
+    shift(value) {
+      this.hourAllowed = []
+      if (value === 1) {
+        for (let i = 6; i <= 14; i++) {
+          this.hourAllowed.push(i)
+        }
+      } else if (value === 2) {
+        for (let i = 14; i <= 22; i++) {
+          this.hourAllowed.push(i)
+        }
+      } else {
+        for (let i = 22; i <= 6; i++) {
+          this.hourAllowed.push(i)
+        }
+      }
+    },
+    widget(value) {
       // this.$axios
       //   .get(process.env.SIM_TWO_API + '/api/categories/?widget=' + value)
       //   .then(res => {
@@ -389,6 +485,9 @@ export default {
       //   .then(res => {
       //     this.parameters = res.data.results
       //   })
+    },
+    value(value) {
+      this.totalValue = parseInt(this.tempTotalValue) + parseInt(value)
     }
   },
   created() {
@@ -412,6 +511,33 @@ export default {
     }
   },
   methods: {
+    getTotal() {
+      this.$axios
+        .get(
+          process.env.SIM_ONE_API +
+            '/operationalconditions?date=' +
+            this.date +
+            '&shift=' +
+            this.shift +
+            '&widget=' +
+            this.widget +
+            '&category=' +
+            this.category +
+            '&parameter=' +
+            this.parameter
+        )
+        .then(res => {
+          if (res.data.length === 0) {
+            this.totalValue = 0
+            this.tempTotalValue = 0
+          } else {
+            for (let i = 0; i < res.data.length; i++) {
+              this.tempTotalValue += res.data[i].value
+            }
+            this.totalValue = this.tempTotalValue
+          }
+        })
+    },
     setup() {
       // this.$axios
       //   .get(
@@ -420,26 +546,49 @@ export default {
       //       process.env.SIM_TWO_ID
       //   )
       //   .then(res => {
-      //     this.wigets = res.data.results
+      //     this.widgets = res.data.results
       //   })
     },
     saveSimTwo() {
+      if (this.$refs.formCondition.validate()) {
+        this.snackbar = true
+        // this.$axios
+        //   .post(process.env.SIM_TWO_API + '/bff/submissions', {
+        //     shift: this.shift,
+        //     date: this.date,
+        //     submissions: [
+        //       {
+        //         parameter: this.parameter,
+        //         value: this.value
+        //       }
+        //     ]
+        //   })
+        //   .then(res => {
+        //     console.log(res)
+        //   })
+      }
+    },
+    saveSimOne() {
+      this.loadingDraft = true
       // if (this.$refs.formCondition.validate()) {
       //   this.snackbar = true
-      //   this.$axios
-      //     .post(process.env.SIM_TWO_API + '/bff/submissions', {
-      //       shift: this.shift,
-      //       date: this.date,
-      //       submissions: [
-      //         {
-      //           parameter: this.parameter,
-      //           value: this.value
-      //         }
-      //       ]
-      //     })
-      //     .then(res => {
-      //       console.log(res)
-      //     })
+      this.$axios
+        .post(process.env.SIM_ONE_API + '/operationalconditions', {
+          // widget: this.widget,
+          // category: this.category,
+          // parameter: this.parameter,
+          widget: 'this.widget',
+          category: 'this.category',
+          parameter: 'this.parameter',
+          date: this.date,
+          time: this.time,
+          shift: this.shift,
+          value: this.value
+        })
+        .then(res => {
+          this.loadingDraft = false
+          console.log(res)
+        })
       // }
     }
   }

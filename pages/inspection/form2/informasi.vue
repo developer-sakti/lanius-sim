@@ -50,13 +50,12 @@
             required
             outlined
           />
-          <v-select
+          <v-text-field
             v-model="form.size"
             label="Size"
             :rules="[v => !!v || 'Nama Produk is required']"
             required
             outlined
-            :items="['100gr', '250gr']"
           />
           <v-text-field
             v-model="form.pro_no"

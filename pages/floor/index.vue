@@ -128,21 +128,20 @@
           <v-spacer />
         </v-card-title>
         <v-card-text class="mt-3">
-          <v-text-field outlined label="Title" />
-          <v-textarea outlined label="Description" auto-grow />
-          <span>Take a picture</span>
-          <v-btn icon @click="onPickFile">
-            <v-icon>mdi-camera</v-icon>
-          </v-btn>
-          <v-form>
-            <input
-              ref="eventImage"
-              type="file"
-              style="display : none"
-              accept="image/*"
-              @change="onFilePicked"
-            />
-          </v-form>
+          <v-text-field v-model="newPost.title" outlined label="Title" />
+          <v-textarea
+            v-model="newPost.description"
+            outlined
+            label="Description"
+            auto-grow
+          />
+          <v-file-input
+            v-model="newPost.image"
+            accept="image/*"
+            label="Take a picture"
+            outlined
+            prepend-icon="mdi-camera"
+          />
         </v-card-text>
         <v-card-actions class="px-5">
           <v-spacer />
@@ -154,7 +153,7 @@
           >
             Cancel
           </v-btn>
-          <v-btn class="primary font-weight-bold text-none">
+          <v-btn class="primary font-weight-bold text-none" @click="send()">
             Send
           </v-btn>
         </v-card-actions>
@@ -174,19 +173,6 @@
         <v-card-text class="mt-3">
           <v-text-field outlined label="Title" />
           <v-textarea outlined label="Description" auto-grow />
-          <span>Take a picture</span>
-          <v-btn icon @click="onPickFile">
-            <v-icon>mdi-camera</v-icon>
-          </v-btn>
-          <v-form>
-            <input
-              ref="eventImage"
-              type="file"
-              style="display : none"
-              accept="image/*"
-              @change="onFilePicked"
-            />
-          </v-form>
         </v-card-text>
         <v-card-actions class="px-5">
           <v-spacer />
@@ -212,15 +198,23 @@ export default {
   data() {
     return {
       dialogNewReport: false,
-      dialogFixReport: false
+      dialogFixReport: false,
+      newPost: {
+        title: null,
+        description: null,
+        image: null
+      },
+      fixingPost: {
+        idPost: null,
+        title: null,
+        description: null,
+        image: null
+      }
     }
   },
   methods: {
-    onPickFile() {
-      this.$refs.eventImage.click()
-    },
-    onFilePicked(event) {
-      // const file = event.target.files
+    send() {
+      console.log(this.newPost)
     }
   }
 }
