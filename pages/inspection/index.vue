@@ -103,7 +103,7 @@
                       :disabled="secondFormPrO === null ? true : false"
                       large
                       color="primary"
-                      @click="dialogCloseClearance = true"
+                      @click="dialogCloseFilling = true"
                     >
                       submit & close PrO
                     </v-btn>
@@ -145,7 +145,7 @@
                       :disabled="thirdFormPrO === null ? true : false"
                       large
                       color="primary"
-                      @click="dialogCloseClearance = true"
+                      @click="dialogClosePacking = true"
                     >
                       submit & close PrO
                     </v-btn>
@@ -322,21 +322,188 @@
           </v-row>
         </v-card-title>
         <v-card-text>
-          <v-form ref="closeProForm1" v-model="valid" lazy-validation>
+          <v-form ref="closeProForm1" lazy-validation>
             <v-row>
               <v-col sm="12" cols="12">
-                <v-text-field label="BIB OPERATOR" outlined />
+                <v-text-field
+                  v-model="firstFormReporter.bib_operator"
+                  :rules="required"
+                  readonly
+                  label="BiB Operator"
+                  outlined
+                />
               </v-col>
               <v-col sm="12" cols="12">
-                <v-text-field label="SUPERVISOR" outlined />
+                <v-text-field
+                  v-model="firstFormReporter.supervisor"
+                  :rules="required"
+                  label="Supervisor"
+                  outlined
+                />
               </v-col>
             </v-row>
           </v-form>
         </v-card-text>
         <v-card-actions class="pb-3 pt-0 mt-0">
           <v-spacer />
-          <v-btn class="warning">Cancel</v-btn>
-          <v-btn class="primary">Submit</v-btn>
+          <v-btn text class="warning" @click="dialogCloseClearance = false">
+            Cancel
+          </v-btn>
+          <v-btn class="primary" @click="submitFirstForm()">Submit</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="dialogCloseFilling" max-width="80vw">
+      <v-card>
+        <v-card-title class="primary white--text">
+          <v-row justify="center">
+            <span>SUBMIT FORM FILLING</span>
+          </v-row>
+        </v-card-title>
+        <v-card-text>
+          <v-form ref="closeProForm2" lazy-validation>
+            <v-row>
+              <v-col sm="9" cols="9" class="pb-0">
+                <v-text-field
+                  v-model="secondFormReporter.previous_operator.name"
+                  :rules="required"
+                  readonly
+                  label="BiB Operator"
+                  outlined
+                />
+              </v-col>
+              <v-col sm="3" cols="3" class="pb-0">
+                <v-select
+                  v-model="secondFormReporter.previous_operator.shift"
+                  :rules="required"
+                  :items="shifts"
+                  item-text="name"
+                  item-value="id"
+                  label="Shift"
+                  outlined
+                />
+              </v-col>
+              <v-col sm="12" cols="12" class="py-0">
+                <v-text-field
+                  v-model="secondFormReporter.previous_supervisor"
+                  :rules="required"
+                  label="Supervisor"
+                  outlined
+                />
+              </v-col>
+              <v-col sm="9" cols="9" class="pb-0">
+                <v-text-field
+                  v-model="secondFormReporter.next_operator.name"
+                  :rules="required"
+                  label="BiB Operator"
+                  outlined
+                />
+              </v-col>
+              <v-col sm="3" cols="3" class="pb-0">
+                <v-select
+                  v-model="secondFormReporter.next_operator.shift"
+                  :rules="required"
+                  :items="shifts"
+                  item-text="name"
+                  item-value="id"
+                  label="Shift"
+                  outlined
+                />
+              </v-col>
+              <v-col sm="12" cols="12" class="py-0">
+                <v-text-field
+                  v-model="secondFormReporter.next_supervisor"
+                  :rules="required"
+                  label="Supervisor"
+                  outlined
+                />
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-card-text>
+        <v-card-actions class="pb-3 pt-0 mt-0">
+          <v-spacer />
+          <v-btn text class="warning" @click="dialogCloseFilling = false">
+            Cancel
+          </v-btn>
+          <v-btn class="primary" @click="submitSecondForm()">Submit</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="dialogClosePacking" max-width="80vw">
+      <v-card>
+        <v-card-title class="primary white--text">
+          <v-row justify="center">
+            <span>SUBMIT FORM PACKING</span>
+          </v-row>
+        </v-card-title>
+        <v-card-text>
+          <v-form ref="closeProForm3" lazy-validation>
+            <v-row>
+              <v-col sm="9" cols="9" class="pb-0">
+                <v-text-field
+                  v-model="thirdFormReporter.previous_operator.name"
+                  :rules="required"
+                  readonly
+                  label="BiB Operator"
+                  outlined
+                />
+              </v-col>
+              <v-col sm="3" cols="3" class="pb-0">
+                <v-select
+                  v-model="thirdFormReporter.previous_operator.shift"
+                  :rules="required"
+                  :items="shifts"
+                  item-text="name"
+                  item-value="id"
+                  label="Shift"
+                  outlined
+                />
+              </v-col>
+              <v-col sm="12" cols="12" class="py-0">
+                <v-text-field
+                  v-model="thirdFormReporter.previous_supervisor"
+                  :rules="required"
+                  label="Supervisor"
+                  outlined
+                />
+              </v-col>
+              <v-col sm="9" cols="9" class="pb-0">
+                <v-text-field
+                  v-model="thirdFormReporter.next_operator.name"
+                  :rules="required"
+                  label="BiB Operator"
+                  outlined
+                />
+              </v-col>
+              <v-col sm="3" cols="3" class="pb-0">
+                <v-select
+                  v-model="thirdFormReporter.next_operator.shift"
+                  :rules="required"
+                  :items="shifts"
+                  item-text="name"
+                  item-value="id"
+                  label="Shift"
+                  outlined
+                />
+              </v-col>
+              <v-col sm="12" cols="12" class="py-0">
+                <v-text-field
+                  v-model="thirdFormReporter.next_supervisor"
+                  :rules="required"
+                  label="Supervisor"
+                  outlined
+                />
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-card-text>
+        <v-card-actions class="pb-3 pt-0 mt-0">
+          <v-spacer />
+          <v-btn text class="warning" @click="dialogClosePacking = false">
+            Cancel
+          </v-btn>
+          <v-btn class="primary" @click="submitThirdForm()">Submit</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -344,9 +511,9 @@
 </template>
 <script>
 import constant from '../../constant'
-import user from '~/mixins/user'
+import core from '~/mixins/core'
 export default {
-  mixins: [user],
+  mixins: [core],
   middleware: ['user'],
   data() {
     return {
@@ -429,10 +596,40 @@ export default {
         },
         { id: 14, subform: 'Catatan', path: '/inspection/form3/catatan' }
       ],
+      firstFormReporter: {
+        bib_operator: null,
+        supervisor: null
+      },
+      secondFormReporter: {
+        previous_operator: {
+          name: null,
+          shift: null
+        },
+        next_operator: {
+          name: null,
+          shift: null
+        },
+        previous_supervisor: null,
+        next_supervisor: null
+      },
+      thirdFormReporter: {
+        previous_operator: {
+          name: null,
+          shift: null
+        },
+        next_operator: {
+          name: null,
+          shift: null
+        },
+        previous_supervisor: null,
+        next_supervisor: null
+      },
       firstFormPrO: null,
       secondFormPrO: null,
       thirdFormPrO: null,
       dialogCloseClearance: false,
+      dialogCloseFilling: false,
+      dialogClosePacking: false,
       widgets: [],
       widget: null,
       categories: [],
@@ -448,7 +645,7 @@ export default {
       date: null,
       value: null,
       totalValue: 0,
-      tempTotalValue: 4,
+      tempTotalValue: 0,
       timePicker: false,
       datePicker: false,
       time: null,
@@ -491,8 +688,13 @@ export default {
     }
   },
   created() {
-    if (this.user === null) {
-      this.dialogProfile = true
+    if (this.user !== null) {
+      this.firstFormReporter.bib_operator =
+        this.user.firstName + ' ' + this.user.lastName
+      this.secondFormReporter.previous_operator.name =
+        this.user.firstName + ' ' + this.user.lastName
+      this.thirdFormReporter.previous_operator.name =
+        this.user.firstName + ' ' + this.user.lastName
     }
     if (process.client) {
       this.setup()
@@ -551,7 +753,6 @@ export default {
     },
     saveSimTwo() {
       if (this.$refs.formCondition.validate()) {
-        this.snackbar = true
         // this.$axios
         //   .post(process.env.SIM_TWO_API + '/bff/submissions', {
         //     shift: this.shift,
@@ -571,7 +772,6 @@ export default {
     saveSimOne() {
       this.loadingDraft = true
       // if (this.$refs.formCondition.validate()) {
-      //   this.snackbar = true
       this.$axios
         .post(process.env.SIM_ONE_API + '/operationalconditions', {
           // widget: this.widget,
@@ -590,12 +790,19 @@ export default {
           console.log(res)
         })
       // }
+    },
+    submitFirstForm() {
+      if (this.$refs.closeProForm1.validate()) {
+      }
+    },
+    submitSecondForm() {
+      if (this.$refs.closeProForm2.validate()) {
+      }
+    },
+    submitThirdForm() {
+      if (this.$refs.closeProForm3.validate()) {
+      }
     }
   }
 }
 </script>
-<style scoped>
-* {
-  font-family: 'HelveticaNeueLight';
-}
-</style>

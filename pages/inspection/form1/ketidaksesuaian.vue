@@ -89,7 +89,6 @@ export default {
     },
     submit() {
       if (this.$refs.formUnnormal.validate()) {
-        this.snackbar = true
         this.save()
         this.$router.push('/inspection')
       }

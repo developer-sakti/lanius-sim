@@ -84,7 +84,6 @@ export default {
     update() {
       if (this.$refs.formUpdateProfile.validate()) {
         this.loading = true
-        this.snackbar = true
         this.$store.dispatch('storeProfile', { ...this.form }).then(() => {
           this.loading = false
           this.message = true

@@ -240,7 +240,6 @@ export default {
     },
     store() {
       if (this.$refs.secondFormAutoquality.validate()) {
-        this.snackbar = true
         this.save()
         this.$router.push('/inspection')
       }

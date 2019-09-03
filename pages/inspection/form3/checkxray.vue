@@ -440,7 +440,6 @@ export default {
     },
     store() {
       if (this.$refs.thirdcheckXray.validate()) {
-        this.snackbar = true
         this.save()
         this.$router.push('/inspection')
       }

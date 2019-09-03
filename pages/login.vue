@@ -63,7 +63,6 @@ export default {
     saveProfile() {
       if (this.$refs.formProfile.validate()) {
         this.loading = true
-        this.snackbar = true
         this.$store.dispatch('storeProfile', this.formProfile).then(() => {
           this.$router.push('/')
         })

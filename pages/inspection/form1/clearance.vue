@@ -453,7 +453,6 @@ export default {
     },
     submit() {
       if (this.$refs.formClearance.validate()) {
-        this.snackbar = true
         this.save()
         this.$router.push('/inspection')
       }

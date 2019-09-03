@@ -260,24 +260,15 @@
                     "
                   />
                 </v-col>
-                <v-col cols="12" sm="4">
+                <v-col cols="12" sm="4" class="pb-0">
                   <span>Material Alufoil</span>
                   <br />
                   <span class="caption black--text">
                     (Jenis Foil)
                   </span>
-                  <br />
-                  <div>
-                    <span class="caption black--text">
-                      *Label/stiker material
-                    </span>
-                    <v-btn icon>
-                      <v-icon>mdi-camera</v-icon>
-                    </v-btn>
-                  </div>
                 </v-col>
-                <v-col cols="12" sm="3">As standard</v-col>
-                <v-col cols="12" sm="2" class="px-3">
+                <v-col cols="12" sm="3" class="pb-0">As standard</v-col>
+                <v-col cols="12" sm="2" class="px-3 pb-0">
                   <v-text-field
                     v-model="form.filling.material_alufoil.foil"
                     :rules="[v => !!v || 'This is required']"
@@ -295,21 +286,25 @@
                     "
                   />
                 </v-col>
+                <v-col cols="6" sm="6" class="py-0">
+                  <v-file-input
+                    :rules="required"
+                    outlined
+                    prepend-icon="mdi-camera"
+                    label="Label/stiker material"
+                  />
+                </v-col>
+              </v-row>
+              <v-row
+                class="primary--text subtitle-1 font-weight-medium"
+                align="center"
+              >
                 <v-col cols="12" sm="4">
                   <span>Setting Code sachet FG</span>
                   <br />
                   <span class="caption black--text">
                     (Standard Coding Sachet)
                   </span>
-                  <br />
-                  <div>
-                    <span class="caption black--text">
-                      *Cetakan coding sachet
-                    </span>
-                    <v-btn icon>
-                      <v-icon>mdi-camera</v-icon>
-                    </v-btn>
-                  </div>
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
@@ -332,6 +327,19 @@
                     "
                   />
                 </v-col>
+                <v-col cols="6" sm="6" class="py-0">
+                  <v-file-input
+                    :rules="required"
+                    outlined
+                    prepend-icon="mdi-camera"
+                    label="Cetakan coding sachet"
+                  />
+                </v-col>
+              </v-row>
+              <v-row
+                class="primary--text subtitle-1 font-weight-medium"
+                align="center"
+              >
                 <v-col cols="12" sm="4">
                   <span>Setting Net Weight</span>
                   <br />
@@ -376,15 +384,6 @@
                   <span class="caption black--text">
                     (Menggunakan kertas karbon)
                   </span>
-                  <br />
-                  <div>
-                    <span class="caption black--text">
-                      *Kertas karbon
-                    </span>
-                    <v-btn icon>
-                      <v-icon>mdi-camera</v-icon>
-                    </v-btn>
-                  </div>
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2" class="px-3">
@@ -397,6 +396,14 @@
                     :label="
                       form.filling.ver_hor_seal_check == 0 ? 'Not OK' : 'OK'
                     "
+                  />
+                </v-col>
+                <v-col cols="6" sm="6" class="py-0">
+                  <v-file-input
+                    :rules="required"
+                    outlined
+                    prepend-icon="mdi-camera"
+                    label="Kertan karbon"
                   />
                 </v-col>
               </v-row>
@@ -452,15 +459,6 @@
                   <span class="caption black--text">
                     (Standard Coding Folding Box)
                   </span>
-                  <br />
-                  <div>
-                    <span class="caption black--text">
-                      *Cetakan coding folding box
-                    </span>
-                    <v-btn icon>
-                      <v-icon>mdi-camera</v-icon>
-                    </v-btn>
-                  </div>
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2">
@@ -484,21 +482,25 @@
                     "
                   />
                 </v-col>
+                <v-col cols="6" sm="6" class="py-0">
+                  <v-file-input
+                    :rules="required"
+                    outlined
+                    prepend-icon="mdi-camera"
+                    label="Cetakan coding folding box"
+                  />
+                </v-col>
+              </v-row>
+              <v-row
+                class="primary--text subtitle-1 font-weight-medium"
+                align="center"
+              >
                 <v-col cols="12" sm="4">
                   <span>Setting Code Outer Carton</span>
                   <br />
                   <span class="caption black--text">
                     (Standard Coding Outer Carton)
                   </span>
-                  <br />
-                  <div>
-                    <span class="caption black--text">
-                      *Cetakan coding outer carton
-                    </span>
-                    <v-btn icon>
-                      <v-icon>mdi-camera</v-icon>
-                    </v-btn>
-                  </div>
                 </v-col>
                 <v-col cols="12" sm="3">As standard</v-col>
                 <v-col cols="12" sm="2">
@@ -522,6 +524,19 @@
                     "
                   />
                 </v-col>
+                <v-col cols="6" sm="6" class="py-0">
+                  <v-file-input
+                    :rules="required"
+                    outlined
+                    prepend-icon="mdi-camera"
+                    label="Cetakan coding outer carton"
+                  />
+                </v-col>
+              </v-row>
+              <v-row
+                class="primary--text subtitle-1 font-weight-medium"
+                align="center"
+              >
                 <v-col cols="12" sm="4">
                   <span>Stock Glue Folding Box</span>
                 </v-col>
@@ -579,7 +594,9 @@
 </template>
 <script>
 import constant from '../../../constant'
+import core from '~/mixins/core'
 export default {
+  mixins: [core],
   middleware: ['user'],
   data() {
     return {

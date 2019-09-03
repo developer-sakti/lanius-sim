@@ -262,7 +262,6 @@ export default {
     },
     store() {
       if (this.$refs.thirdFormXray.validate()) {
-        this.snackbar = true
         this.save()
         this.$router.push('/inspection')
       }

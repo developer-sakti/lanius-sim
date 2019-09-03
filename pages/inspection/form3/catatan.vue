@@ -86,7 +86,6 @@ export default {
     },
     submit() {
       if (this.$refs.thirdFormNote.validate()) {
-        this.snackbar = true
         this.save()
         this.$router.push('/inspection')
       }

@@ -110,9 +110,9 @@
                 <v-list-item v-for="item in 3" :key="item">
                   <v-list-item-content class="blue--text">
                     <v-row>
-                      <v-col cols="10" sm="9"
-                        >1010131313 (10 Agustus 2019) (10 Agustus 2019)</v-col
-                      >
+                      <v-col cols="10" sm="9">
+                        1010131313 (10 Agustus 2019)
+                      </v-col>
                       <v-col cols="10" sm="1">
                         <v-btn icon color="primary">
                           <v-icon dark size="40">zoom_in</v-icon>
@@ -227,9 +227,9 @@
   </v-container>
 </template>
 <script>
-import user from '~/mixins/user'
+import core from '~/mixins/core'
 export default {
-  mixins: [user],
+  mixins: [core],
   middleware: ['user'],
   data() {
     return {
@@ -244,23 +244,6 @@ export default {
       date: null,
       shift: null,
       operationalHistories: []
-    }
-  },
-  computed: {
-    currentDate() {
-      let month, day
-      const date = new Date()
-      if (date.getMonth() + 1 <= 9) {
-        month = '0' + (date.getMonth() + 1)
-      } else {
-        month = date.getMonth()
-      }
-      if (date.getDate() < 9) {
-        day = '0' + date.getDate()
-      } else {
-        day = date.getDate()
-      }
-      return date.getFullYear() + '-' + month + '-' + day
     }
   },
   watch: {

@@ -43,14 +43,12 @@
           />
         </v-col>
         <v-col cols="10" sm="10" class="pt-0">
-          <span class="primary--text">Kondisi Jaw Sealing</span>
-          <v-btn icon>
-            <v-icon>mdi-camera</v-icon>
-          </v-btn>
-          <br />
-          <span class="grey--text">
-            (Lampirkan pengecekkan kertas karbon) - setiap awal jalan
-          </span>
+          <v-file-input
+            :rules="required"
+            outlined
+            prepend-icon="mdi-camera"
+            label="Lampirkan pengecekkan kertas karbon (setiap awal jalan)"
+          />
         </v-col>
         <v-col cols="10" sm="5" class="py-0 my-0">
           <v-btn block large class="grey lighten-1" dark @click="draft()">
@@ -66,7 +64,9 @@
 </template>
 <script>
 import constant from '../../../constant'
+import core from '~/mixins/core'
 export default {
+  mixins: [core],
   middleware: ['user'],
   data() {
     return {
@@ -100,7 +100,6 @@ export default {
     },
     store() {
       if (this.$refs.secondFormCondition.validate()) {
-        this.snackbar = true
         this.save()
       }
     },

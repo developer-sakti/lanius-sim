@@ -51,13 +51,12 @@
             required
             outlined
           />
-          <v-select
+          <v-text-field
             v-model="form.size"
             :rules="[v => v !== null || 'This field is required']"
             label="Size"
             required
             outlined
-            :items="['100gr', '250gr']"
           />
           <v-text-field
             v-model="form.pro_no"
@@ -117,7 +116,6 @@ export default {
     },
     store() {
       if (this.$refs.thirdFormInformation.validate()) {
-        this.snackbar = true
         this.save()
         this.$router.push('/inspection')
       }

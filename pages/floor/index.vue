@@ -1,5 +1,31 @@
 <template>
   <v-container id="report" fluid>
+    <v-row justify="start" align="center">
+      <v-col cols="3" sm="3" class="py-0">
+        <v-select
+          v-model="sortby"
+          :items="sortbys"
+          item-text="text"
+          item-value="value"
+          solo
+          background-color="#B3E5FC"
+          flat
+          label="Urutkan"
+        />
+      </v-col>
+      <v-col cols="3" sm="3" class="py-0">
+        <v-select
+          v-model="status"
+          :items="statuses"
+          item-text="text"
+          item-value="value"
+          solo
+          background-color="#BBDEFB"
+          flat
+          label="Status"
+        />
+      </v-col>
+    </v-row>
     <v-card class="mb-3" flat>
       <v-card-title>
         <div>
@@ -128,32 +154,47 @@
           <v-spacer />
         </v-card-title>
         <v-card-text class="mt-3">
-          <v-text-field v-model="newPost.title" outlined label="Title" />
-          <v-textarea
-            v-model="newPost.description"
-            outlined
-            label="Description"
-            auto-grow
-          />
-          <v-file-input
-            v-model="newPost.image"
-            accept="image/*"
-            label="Take a picture"
-            outlined
-            prepend-icon="mdi-camera"
-          />
+          <v-form ref="formNewFloor" lazy-validation>
+            <v-text-field
+              v-model="newPost.title"
+              :rules="required"
+              outlined
+              label="Title"
+            />
+            <v-textarea
+              v-model="newPost.description"
+              :rules="required"
+              outlined
+              label="Description"
+              auto-grow
+            />
+            <v-file-input
+              v-model="newPost.image"
+              :rules="required"
+              accept="image/*"
+              label="Take a picture"
+              outlined
+              prepend-icon="mdi-camera"
+            />
+          </v-form>
         </v-card-text>
         <v-card-actions class="px-5">
           <v-spacer />
           <v-btn
             text
+            large
             color="warning"
             class="text-none"
             @click="dialogNewReport = false"
           >
             Cancel
           </v-btn>
-          <v-btn class="primary font-weight-bold text-none" @click="send()">
+          <v-btn
+            class="primary font-weight-bold text-none"
+            :loading="loading"
+            large
+            @click="sendNewPost()"
+          >
             Send
           </v-btn>
         </v-card-actions>
@@ -171,8 +212,29 @@
           <v-spacer />
         </v-card-title>
         <v-card-text class="mt-3">
-          <v-text-field outlined label="Title" />
-          <v-textarea outlined label="Description" auto-grow />
+          <v-form ref="formFixingFloor">
+            <v-text-field
+              v-model="fixingPost.title"
+              :rules="required"
+              outlined
+              label="Title"
+            />
+            <v-textarea
+              v-model="fixingPost.description"
+              :rules="required"
+              outlined
+              label="Description"
+              auto-grow
+            />
+            <v-file-input
+              v-model="fixingPost.image"
+              :rules="required"
+              accept="image/*"
+              label="Take a picture"
+              outlined
+              prepend-icon="mdi-camera"
+            />
+          </v-form>
         </v-card-text>
         <v-card-actions class="px-5">
           <v-spacer />
@@ -184,7 +246,12 @@
           >
             Cancel
           </v-btn>
-          <v-btn class="primary font-weight-bold text-none">
+          <v-btn
+            class="primary font-weight-bold text-none"
+            large
+            :loading="loading"
+            @click="sendFixingPost()"
+          >
             Send
           </v-btn>
         </v-card-actions>
@@ -193,7 +260,9 @@
   </v-container>
 </template>
 <script>
+import core from '~/mixins/core'
 export default {
+  mixins: [core],
   middleware: ['user'],
   data() {
     return {
@@ -201,7 +270,9 @@ export default {
       dialogFixReport: false,
       newPost: {
         title: null,
+        date: null,
         description: null,
+        fixed: null,
         image: null
       },
       fixingPost: {
@@ -209,12 +280,42 @@ export default {
         title: null,
         description: null,
         image: null
-      }
+      },
+      sortbys: [{ text: 'Terbaru', value: 1 }, { text: 'Terlama', value: 2 }],
+      sortby: 1,
+      statuses: [
+        { text: 'Semua', value: 1 },
+        { text: 'Open', value: 2 },
+        { text: 'Fixed', value: 3 }
+      ],
+      status: 1
     }
   },
+  created() {
+    this.newPost.date = this.currentDate
+  },
   methods: {
-    send() {
-      console.log(this.newPost)
+    async sendNewPost() {
+      this.loading = true
+      let newPostId
+      if (this.$refs.formNewFloor.validate()) {
+        newPostId = await this.$axios
+          .post(process.env.SIM_ONE_API + '/floors', this.newPost)
+          .then(res => {
+            if (res.statusCode === 200) {
+              this.loading = false
+              return res.data.id
+            }
+          })
+        if (newPostId !== undefined) {
+          // image upload
+          // this.$axios.post(process.env.SIM_ONE_API)
+        }
+      }
+    },
+    sendFixingPost() {
+      if (this.$refs.formFixingFloor.validate()) {
+      }
     }
   }
 }

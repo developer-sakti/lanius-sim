@@ -119,7 +119,6 @@ export default {
   methods: {
     store() {
       if (this.$refs.form1Info.validate()) {
-        this.snackbar = true
         this.save()
         this.$router.push('/inspection')
       }
