@@ -89,6 +89,6 @@ export default {
     SIM_TWO_API: 'http://167.179.102.43:8000',
     SIM_TWO_USERNAME: 'sentul',
     SIM_TWO_PASSWORD: 'laniuslab',
-    SIM_ONE_API: 'http://192.168.13.107:1337'
+    SIM_ONE_API: 'http://13.250.12.122:1337'
   }
 }
