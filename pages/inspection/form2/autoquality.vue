@@ -158,6 +158,54 @@
                       <v-radio label="C" value="C"></v-radio>
                     </v-radio-group>
                   </v-col>
+                  <v-col cols="12" sm="6" class="py-0">
+                    <span class="primary--text subtitle-1 font-weight-medium">
+                      Temperatur ruang
+                    </span>
+                    <br />
+                    <span class="caption black--text">
+                      (Kurang dari 25 C)
+                    </span>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="py-0">
+                    <v-text-field
+                      v-model="item.temperatur"
+                      :rules="[v => v !== null || 'This field is required']"
+                      outlined
+                    />
+                  </v-col>
+                  <v-col cols="12" sm="6" class="py-0">
+                    <span class="primary--text subtitle-1 font-weight-medium">
+                      RH Ruang
+                    </span>
+                    <br />
+                    <span class="caption black--text">
+                      (Kurang dari 45%)
+                    </span>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="py-0">
+                    <v-text-field
+                      v-model="item.rh"
+                      :rules="[v => v !== null || 'This field is required']"
+                      outlined
+                    />
+                  </v-col>
+                  <v-col cols="12" sm="6" class="py-0">
+                    <span class="primary--text subtitle-1 font-weight-medium">
+                      Pressure Ruangan
+                    </span>
+                    <br />
+                    <span class="caption black--text">
+                      (min 10 pa)
+                    </span>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="py-0">
+                    <v-text-field
+                      v-model="item.pressure"
+                      :rules="[v => v !== null || 'This field is required']"
+                      outlined
+                    />
+                  </v-col>
                 </v-row>
               </v-tab-item>
             </v-tabs-items>
@@ -203,7 +251,10 @@ export default {
         o2_level: {
           value: null,
           type: null
-        }
+        },
+        temperatur: null,
+        rh: null,
+        pressure: null
       },
       arrayForm: [],
       selectOption: [{ value: 1, text: 'Ya' }, { value: 0, text: 'Tidak' }]

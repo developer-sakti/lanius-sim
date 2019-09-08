@@ -4,7 +4,7 @@
 <script>
 export default {
   created() {
-    this.$router.push('/inspection')
+    this.$router.push('/menu')
   }
 }
 </script>

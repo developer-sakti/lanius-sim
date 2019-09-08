@@ -1,20 +1,5 @@
 <template>
   <v-app>
-    <v-app-bar
-      flat
-      color="grey lighten-3"
-      fixed
-      app
-      height="150"
-      class="px-0 bg-gradient"
-    >
-      <v-avatar size="120" tile class="ml-3">
-        <v-img src="/logo.svg" width="80" height="150" />
-      </v-avatar>
-      <span class="primary--text font-weight-bold ml-5 headline">
-        E-SIM 1 BiB AREA - SUGIZINDO SENTUL
-      </span>
-    </v-app-bar>
     <v-content>
       <nuxt />
     </v-content>
@@ -56,14 +41,3 @@ export default {
   }
 }
 </script>
-<style>
-.bg-gradient {
-  background-color: #1fc8db;
-  background-image: linear-gradient(
-    141deg,
-    #fafafa 10%,
-    #4dd0e1 51%,
-    #00e5ff 75%
-  );
-}
-</style>

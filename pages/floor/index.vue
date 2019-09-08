@@ -1,5 +1,14 @@
 <template>
   <v-container id="report" fluid>
+    <v-snackbar
+      v-model="snackbar.visible"
+      :color="snackbar.color"
+      :timeout="3000"
+      top
+      right
+    >
+      {{ snackbar.text }}
+    </v-snackbar>
     <v-row justify="start" align="center">
       <v-col cols="3" sm="3" class="py-0">
         <v-select
@@ -26,40 +35,58 @@
         />
       </v-col>
     </v-row>
-    <v-card class="mb-3" flat>
+    <v-card v-for="floor in floors" :key="floor.id" class="mb-3" flat>
       <v-card-title>
         <div>
-          <span class="title">Conveyor 11 | Fixing Conveyor 11</span>
+          <span class="title">
+            {{ floor.title }}
+            {{ floor.fixed === null ? '' : '| ' + floor.fixed.title }}
+          </span>
           <br />
-          <span class="caption">1 Des 2018 | 3 Des 2019</span>
+          <span class="caption">
+            {{ formatDate(floor.date.substring(0, 10)) }}
+            {{
+              floor.fixed === null
+                ? ''
+                : '| ' + formatDate(floor.fixed.date.substring(0, 10))
+            }}
+          </span>
         </div>
         <v-spacer />
         <v-btn
-          class="text-none grey lighten-1"
+          :class="
+            floor.fixed !== null
+              ? 'text-none grey lighten-1'
+              : 'text-none primary lighten-1'
+          "
           large
           text
-          disabled
-          @click="dialogFixReport = true"
+          :disabled="floor.fixed !== null ? true : false"
+          @click="showFixingReport(floor.id)"
         >
           <v-icon>done_all</v-icon>
-          <span class="ml-3 font-weight-bold">Fixed</span>
+          <span class="ml-3 font-weight-bold">
+            {{ floor.fixed !== null ? 'Fixed' : 'Open' }}
+          </span>
         </v-btn>
       </v-card-title>
       <v-divider />
       <v-card-title>
         <div>
           <span class="subtitle-1 grey--text">
-            Problem : Kerusakan pada conveyor no 11, menyebabkan mesin mati
+            Problem : {{ floor.title }}
           </span>
           <br />
-          <span class="subtitle-1 grey--text">
-            Fixing : Kerusakan pada conveyor no 11, menyebabkan mesin mati
+          <span v-if="floor.fixed !== null" class="subtitle-1 grey--text">
+            Fixing : {{ floor.fixed.title }}
           </span>
         </div>
         <v-spacer />
-        <v-btn text to="/floor/adsd">
+        <v-btn text :to="'/floor/' + floor.id">
           <v-icon color="primary">mdi-comment-text-outline</v-icon>
-          <span class="body-1 ml-1 primary--text">2</span>
+          <span class="body-1 ml-1 primary--text">
+            {{ floor.comments.length }}
+          </span>
         </v-btn>
       </v-card-title>
       <v-card-text>
@@ -72,60 +99,16 @@
             pagination-color="grey"
             class="mt-3 mx-0"
           >
-            <slide v-for="i in 2" :key="i">
+            <slide v-for="i in floor.images" :key="i">
               <v-img
                 aspect-ratio="1"
                 max-width="100vw"
                 max-height="30vh"
-                src="https://asset.kompas.com/crop/0x8:800x541/750x500/data/photo/2017/06/03/2741644439.jpg"
+                :src="simOneApi + i"
               />
             </slide>
           </carousel>
         </client-only>
-      </v-card-text>
-    </v-card>
-    <v-card v-for="item in 3" :key="item" flat class="mb-3">
-      <v-card-title>
-        <div>
-          <span class="title">Conveyor 11</span>
-          <br />
-          <span class="caption">1 Des 2018</span>
-        </div>
-        <v-spacer />
-        <v-btn
-          class="text-none primary lighten-1"
-          large
-          text
-          @click="dialogFixReport = true"
-        >
-          <v-icon>done_all</v-icon>
-          <span class="ml-3 font-weight-bold">Open</span>
-        </v-btn>
-      </v-card-title>
-      <v-divider />
-      <v-card-title>
-        <div>
-          <span class="subtitle-1 grey--text">
-            Problem : Kerusakan pada conveyor no 11, menyebabkan mesin mati
-          </span>
-          <br />
-          <span class="subtitle-1 grey--text">
-            Fixing : -
-          </span>
-        </div>
-        <v-spacer />
-        <v-btn text>
-          <v-icon color="primary">mdi-comment-text-outline</v-icon>
-          <span class="body-1 ml-1 primary--text">2</span>
-        </v-btn>
-      </v-card-title>
-      <v-card-text>
-        <v-img
-          aspect-ratio="1"
-          max-width="100vw"
-          max-height="30vh"
-          src="https://asset.kompas.com/crop/0x8:800x541/750x500/data/photo/2017/06/03/2741644439.jpg"
-        />
       </v-card-text>
     </v-card>
     <v-fab-transition>
@@ -185,7 +168,7 @@
             large
             color="warning"
             class="text-none"
-            @click="dialogNewReport = false"
+            @click="resetNewForm()"
           >
             Cancel
           </v-btn>
@@ -242,7 +225,7 @@
             text
             color="warning"
             class="text-none"
-            @click="dialogFixReport = false"
+            @click="resetFixedForm()"
           >
             Cancel
           </v-btn>
@@ -268,6 +251,11 @@ export default {
     return {
       dialogNewReport: false,
       dialogFixReport: false,
+      snackbar: {
+        text: null,
+        color: 'primary',
+        visible: false
+      },
       newPost: {
         title: null,
         date: null,
@@ -276,7 +264,8 @@ export default {
         image: null
       },
       fixingPost: {
-        idPost: null,
+        floor: null,
+        date: null,
         title: null,
         description: null,
         image: null
@@ -288,33 +277,152 @@ export default {
         { text: 'Open', value: 2 },
         { text: 'Fixed', value: 3 }
       ],
-      status: 1
+      status: 1,
+      floors: []
+    }
+  },
+  watch: {
+    sortby() {
+      this.getFloors()
+    },
+    status() {
+      this.getFloors()
     }
   },
   created() {
     this.newPost.date = this.currentDate
+    this.fixingPost.date = this.currentDate
+    this.getFloors()
   },
   methods: {
+    getFloors() {
+      this.floors = []
+      let sort
+      if (this.sortby === 1) {
+        sort = '_sort=created_at:DESC'
+      } else if (this.sortby === 2) {
+        sort = '_sort=created_at:ASC'
+      }
+      this.$axios.get(process.env.SIM_ONE_API + '/floors?' + sort).then(res => {
+        let images
+        for (let i = 0; i < res.data.length; i++) {
+          images = []
+          if (res.data[i].fixed === null) {
+            images.push(res.data[i].image.url)
+          } else {
+            images.push(res.data[i].image.url)
+            images.push(res.data[i].fixed.image.url)
+          }
+          if (this.status === 1) {
+            this.floors.push({ ...res.data[i], images })
+          } else if (this.status === 2) {
+            if (res.data[i].fixed === null) {
+              this.floors.push({ ...res.data[i], images })
+            }
+          } else if (this.status === 3) {
+            if (res.data[i].fixed !== null) {
+              this.floors.push({ ...res.data[i], images })
+            }
+          }
+        }
+      })
+    },
+
     async sendNewPost() {
-      this.loading = true
-      let newPostId
       if (this.$refs.formNewFloor.validate()) {
-        newPostId = await this.$axios
+        this.loading = true
+        // post new floor
+        const newPostId = await this.$axios
           .post(process.env.SIM_ONE_API + '/floors', this.newPost)
           .then(res => {
-            if (res.statusCode === 200) {
-              this.loading = false
+            if (res.status === 200) {
               return res.data.id
             }
           })
+        // image upload
         if (newPostId !== undefined) {
-          // image upload
-          // this.$axios.post(process.env.SIM_ONE_API)
+          const form = new FormData()
+          form.append('files', this.newPost.image)
+          form.append('refId', newPostId)
+          form.append('ref', 'floor')
+          form.append('field', 'image')
+          this.$axios
+            .post(process.env.SIM_ONE_API + '/upload', form)
+            .then(res => {
+              if (res.status === 200) {
+                this.successPost()
+              } else {
+                this.failedPost()
+              }
+              this.resetNewForm()
+            })
+        } else {
+          this.failedPost()
+          this.resetNewForm()
         }
       }
     },
-    sendFixingPost() {
+    successPost() {
+      this.getFloors()
+      this.snackbar = {
+        text: 'Post send successfully',
+        color: 'success',
+        visible: true
+      }
+    },
+    failedPost() {
+      this.snackbar = {
+        text: 'Post send failed',
+        color: 'error',
+        visible: true
+      }
+    },
+    showFixingReport(id) {
+      this.dialogFixReport = true
+      this.fixingPost.floor = id
+    },
+    resetNewForm() {
+      this.loading = false
+      this.dialogNewReport = false
+      this.$refs.formNewFloor.reset()
+    },
+    resetFixedForm() {
+      this.loading = false
+      this.dialogFixReport = false
+      this.$refs.formFixingFloor.reset()
+    },
+    async sendFixingPost() {
       if (this.$refs.formFixingFloor.validate()) {
+        this.loading = true
+        // post new floor
+        const fixedPostId = await this.$axios
+          .post(process.env.SIM_ONE_API + '/fixeds', this.fixingPost)
+          .then(res => {
+            if (res.status === 200) {
+              return res.data.id
+            }
+          })
+        // image upload
+        if (fixedPostId !== undefined) {
+          const form = new FormData()
+          form.append('files', this.fixingPost.image)
+          form.append('refId', fixedPostId)
+          form.append('ref', 'fixed')
+          form.append('field', 'image')
+          this.$axios
+            .post(process.env.SIM_ONE_API + '/upload', form)
+            .then(res => {
+              if (res.status === 200) {
+                this.successPost()
+              } else {
+                this.failedPost()
+              }
+              this.resetFixedForm()
+            })
+        } else {
+          this.failedPost()
+          this.resetFixedForm()
+        }
       }
     }
   }

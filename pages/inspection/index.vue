@@ -30,129 +30,141 @@
       <v-window-item :value="1">
         <v-row class="mt-3">
           <v-col cols="12" sm="12" md="12">
-            <v-list>
-              <v-list-group>
-                <template slot="activator">
-                  <v-list-item-content>
-                    <span class="title blue--text">
-                      CHECKLIST CLEARANCE SMALL SACHET
-                    </span>
-                    <br />
-                    <span class="subtitle-1 grey--text">
-                      CURRENT PRO :
-                      {{ firstFormPrO === null ? '-' : firstFormPrO }}
-                    </span>
-                  </v-list-item-content>
-                </template>
-                <v-list-item
-                  v-for="item in form1"
-                  :key="item.id"
-                  :to="item.path"
-                >
-                  <v-list-item-content class="blue--text">
-                    <v-list-item-title class="title">
-                      <span>{{ item.subform }}</span>
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-content class="blue--text">
-                    <v-btn
-                      :disabled="firstFormPrO === null ? true : false"
-                      large
-                      color="primary"
-                      @click="dialogCloseClearance = true"
+            <v-card>
+              <v-card-text>
+                <v-list>
+                  <v-list-group>
+                    <template slot="activator">
+                      <v-list-item-content>
+                        <span class="title blue--text">
+                          CHECKLIST CLEARANCE SMALL SACHET
+                        </span>
+                        <br />
+                        <span class="subtitle-1 grey--text">
+                          CURRENT PRO :
+                          {{ firstFormPrO === null ? '-' : firstFormPrO }}
+                        </span>
+                      </v-list-item-content>
+                    </template>
+                    <v-list-item
+                      v-for="item in form1"
+                      :key="item.id"
+                      :to="item.path"
                     >
-                      submit & close PrO
-                    </v-btn>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-group>
-            </v-list>
+                      <v-list-item-content class="blue--text">
+                        <v-list-item-title class="title">
+                          <span>{{ item.subform }}</span>
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item>
+                      <v-list-item-content class="blue--text">
+                        <v-btn
+                          :disabled="firstFormPrO === null ? true : false"
+                          large
+                          color="primary"
+                          @click="dialogCloseClearance = true"
+                        >
+                          submit & close PrO
+                        </v-btn>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list-group>
+                </v-list>
+              </v-card-text>
+            </v-card>
           </v-col>
           <v-col cols="12" sm="12" md="12">
-            <v-list>
-              <v-list-group>
-                <template slot="activator">
-                  <v-list-item-content>
-                    <span class="title blue--text">
-                      FILLING SACHET MONITORING
-                    </span>
-                    <br />
-                    <span class="subtitle-1 grey--text">
-                      CURRENT PRO :
-                      {{ secondFormPrO === null ? '-' : secondFormPrO }}
-                    </span>
-                  </v-list-item-content>
-                </template>
-                <v-list-item
-                  v-for="item in form2"
-                  :key="item.id"
-                  :to="item.path"
-                >
-                  <v-list-item-content class="blue--text">
-                    <v-list-item-title class="title">
-                      <span>{{ item.subform }}</span>
-                      <span class="grey--text">{{ item.note }}</span>
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-content class="blue--text">
-                    <v-btn
-                      :disabled="secondFormPrO === null ? true : false"
-                      large
-                      color="primary"
-                      @click="dialogCloseFilling = true"
+            <v-card>
+              <v-card-text>
+                <v-list>
+                  <v-list-group>
+                    <template slot="activator">
+                      <v-list-item-content>
+                        <span class="title blue--text">
+                          FILLING SACHET MONITORING
+                        </span>
+                        <br />
+                        <span class="subtitle-1 grey--text">
+                          CURRENT PRO :
+                          {{ secondFormPrO === null ? '-' : secondFormPrO }}
+                        </span>
+                      </v-list-item-content>
+                    </template>
+                    <v-list-item
+                      v-for="item in form2"
+                      :key="item.id"
+                      :to="item.path"
                     >
-                      submit & close PrO
-                    </v-btn>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-group>
-            </v-list>
+                      <v-list-item-content class="blue--text">
+                        <v-list-item-title class="title">
+                          <span>{{ item.subform }}</span>
+                          <span class="grey--text">{{ item.note }}</span>
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item>
+                      <v-list-item-content class="blue--text">
+                        <v-btn
+                          :disabled="secondFormPrO === null ? true : false"
+                          large
+                          color="primary"
+                          @click="dialogCloseFilling = true"
+                        >
+                          submit & close PrO
+                        </v-btn>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list-group>
+                </v-list>
+              </v-card-text>
+            </v-card>
           </v-col>
           <v-col cols="12" sm="12" md="12">
-            <v-list>
-              <v-list-group>
-                <template slot="activator">
-                  <v-list-item-content>
-                    <span class="title blue--text">
-                      PACKING SACHET MONITORING
-                    </span>
-                    <br />
-                    <span class="subtitle-1 grey--text">
-                      CURRENT PRO :
-                      {{ thirdFormPrO === null ? '-' : thirdFormPrO }}
-                    </span>
-                  </v-list-item-content>
-                </template>
-                <v-list-item
-                  v-for="item in form3"
-                  :key="item.id"
-                  :to="item.path"
-                >
-                  <v-list-item-content class="blue--text">
-                    <v-list-item-title class="title">
-                      <span>{{ item.subform }}</span>
-                      <span class="grey--text">{{ item.note }}</span>
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-content class="blue--text">
-                    <v-btn
-                      :disabled="thirdFormPrO === null ? true : false"
-                      large
-                      color="primary"
-                      @click="dialogClosePacking = true"
+            <v-card>
+              <v-card-text>
+                <v-list>
+                  <v-list-group>
+                    <template slot="activator">
+                      <v-list-item-content>
+                        <span class="title blue--text">
+                          PACKING SACHET MONITORING
+                        </span>
+                        <br />
+                        <span class="subtitle-1 grey--text">
+                          CURRENT PRO :
+                          {{ thirdFormPrO === null ? '-' : thirdFormPrO }}
+                        </span>
+                      </v-list-item-content>
+                    </template>
+                    <v-list-item
+                      v-for="item in form3"
+                      :key="item.id"
+                      :to="item.path"
                     >
-                      submit & close PrO
-                    </v-btn>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-group>
-            </v-list>
+                      <v-list-item-content class="blue--text">
+                        <v-list-item-title class="title">
+                          <span>{{ item.subform }}</span>
+                          <span class="grey--text">{{ item.note }}</span>
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item>
+                      <v-list-item-content class="blue--text">
+                        <v-btn
+                          :disabled="thirdFormPrO === null ? true : false"
+                          large
+                          color="primary"
+                          @click="dialogClosePacking = true"
+                        >
+                          submit & close PrO
+                        </v-btn>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list-group>
+                </v-list>
+              </v-card-text>
+            </v-card>
           </v-col>
         </v-row>
       </v-window-item>

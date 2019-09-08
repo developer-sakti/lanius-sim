@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-row justify="center">
-      <v-btn-toggle v-model="menu">
+    <v-row justify="center" class="mt-5">
+      <v-btn-toggle v-model="menu" rounded>
         <v-btn
           width="40vw"
           :value="1"
@@ -281,5 +281,11 @@ export default {
   border: 2px solid #81d4fa !important;
   background: transparent !important;
   border-radius: 5px;
+}
+.image-wrapper {
+  z-index: 999;
+  position: fixed;
+  opacity: 0.95;
+  top: 0;
 }
 </style>

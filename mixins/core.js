@@ -38,8 +38,13 @@ export default {
       }
       return date.getFullYear() + '-' + month + '-' + day
     },
-    formatDate() {
-      const temp = this.currentDate.split('-')
+    simOneApi() {
+      return process.env.SIM_ONE_API
+    }
+  },
+  methods: {
+    formatDate(date) {
+      const temp = date.split('-')
       return temp[2] + ' ' + this.months[temp[1] - 1] + ' ' + temp[0]
     }
   }
