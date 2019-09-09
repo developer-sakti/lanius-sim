@@ -7,60 +7,70 @@
         class="image-top-wrapper"
       />
     </transition>
-    <v-img src="/image/login/logo-danone.png" class="image-danone-wrapper" />
+    <transition name="slide-top-fade">
+      <v-img
+        v-if="animation"
+        src="/image/login/logo-danone.png"
+        class="image-danone-wrapper"
+      />
+    </transition>
     <v-container>
       <v-row justify="center">
         <v-col cols="5" sm="5" class="logo-sim">
-          <v-img src="/image/login/logo-sim.png" />
+          <transition name="slide-top-fade">
+            <v-img v-if="animation" src="/image/login/logo-sim.png" />
+          </transition>
         </v-col>
       </v-row>
       <v-row justify="center">
         <v-col cols="6" sm="6" class="form-login">
-          <v-form ref="formProfile" v-model="valid" lazy-validation>
-            <v-row>
-              <v-col sm="12" cols="12">
-                <v-text-field
-                  v-model="formProfile.firstName"
-                  prepend-inner-icon="mdi-face"
-                  :rules="[value => !!value || 'First Name is required']"
-                  label="First Name"
-                  required
-                  class="field-rounded"
-                  solo
-                  flat
-                />
-                <v-text-field
-                  v-model="formProfile.lastName"
-                  prepend-inner-icon="mdi-face-profile"
-                  class="field-rounded"
-                  label="Last Name"
-                  solo
-                  flat
-                />
-                <v-text-field
-                  v-model="formProfile.employeeId"
-                  :rules="[value => !!value || 'Employee ID is required']"
-                  prepend-inner-icon="mdi-account-card-details"
-                  class="field-rounded top-index"
-                  label="Employee ID"
-                  solo
-                  flat
-                />
-                <v-btn
-                  color="primary lighten-2"
-                  :loading="loading"
-                  class="field-rounded"
-                  dark
-                  elevation="0"
-                  block
-                  x-large
-                  @click="saveProfile()"
-                >
-                  <span class="mx-5 subtitle-1 font-weight-bold">save</span>
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-form>
+          <transition name="slide-bottom-fade">
+            <v-form v-if="animation" ref="formProfile" lazy-validation>
+              <v-row>
+                <v-col sm="12" cols="12">
+                  <v-text-field
+                    v-model="formProfile.firstName"
+                    prepend-inner-icon="mdi-face"
+                    :rules="[value => !!value || 'First Name is required']"
+                    label="First Name"
+                    required
+                    class="field-rounded"
+                    solo
+                    flat
+                  />
+                  <v-text-field
+                    v-model="formProfile.lastName"
+                    prepend-inner-icon="mdi-face-profile"
+                    class="field-rounded"
+                    label="Last Name"
+                    solo
+                    flat
+                  />
+                  <v-text-field
+                    v-model="formProfile.employeeId"
+                    :rules="[value => !!value || 'Employee ID is required']"
+                    prepend-inner-icon="mdi-account-card-details"
+                    class="field-rounded top-index"
+                    label="Employee ID"
+                    solo
+                    flat
+                  />
+                  <v-btn
+                    color="primary lighten-2"
+                    :loading="loading"
+                    class="field-rounded"
+                    dark
+                    elevation="0"
+                    block
+                    x-large
+                    @click="saveProfile()"
+                  >
+                    <span class="mx-5 subtitle-1 font-weight-bold">save</span>
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-form>
+          </transition>
         </v-col>
       </v-row>
     </v-container>
@@ -79,7 +89,6 @@ export default {
   middleware: ['login'],
   data() {
     return {
-      valid: true,
       loading: false,
       formProfile: {
         firstName: null,
@@ -139,8 +148,8 @@ export default {
 .slide-bottom-fade-leave-active {
   transition: all 1s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-bottom-fade-enter, .slide-bottom-fade-leave-to
-/* .slide-bottom-fade-leave-active below version 2.1.8 */ {
+.slide-bottom-fade-enter,
+.slide-bottom-fade-leave-to {
   transform: translateY(50px);
   opacity: 0;
 }
@@ -151,8 +160,8 @@ export default {
 .slide-top-fade-leave-active {
   transition: all 1s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-top-fade-enter, .slide-top-fade-leave-to
-/* .slide-top-fade-leave-active below version 2.1.8 */ {
+.slide-top-fade-enter,
+.slide-top-fade-leave-to {
   transform: translateY(-50px);
   opacity: 0;
 }

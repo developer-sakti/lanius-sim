@@ -6,8 +6,8 @@
           <v-img src="/image/menu/logo-danone.png" />
         </v-col>
         <v-col cols="10" sm="10">
-          <span class="title text-title-color">
-            Hello, {{ user.firstName + ' ' + user.lastName }}
+          <span class="title text-color">
+            Welcome, {{ user.firstName + ' ' + user.lastName }}
           </span>
         </v-col>
       </v-row>
@@ -112,13 +112,6 @@ export default {
   height: 20vh;
 }
 .text-color {
-  background: linear-gradient(to right, #28c3ff 40%, #4f00ed 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.text-title-color {
-  background: linear-gradient(to right, #28c3ff 20%, #5000ec 90%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #28c3ff;
 }
 </style>

@@ -11,7 +11,7 @@
               : 'title font-weight-bold'
           "
         >
-          SIM 1 FORM
+          E-SIM FORM
         </v-btn>
         <v-btn
           :value="2"
@@ -28,22 +28,29 @@
     </v-row>
     <v-window v-model="menu">
       <v-window-item :value="1">
-        <v-row class="mt-3">
-          <v-col cols="12" sm="12" md="12">
-            <v-card>
+        <v-row class="mt-5" justify="center">
+          <v-col cols="11" sm="11" md="11">
+            <v-card class="card-form-rounded">
               <v-card-text>
                 <v-list>
                   <v-list-group>
                     <template slot="activator">
                       <v-list-item-content>
-                        <span class="title blue--text">
-                          CHECKLIST CLEARANCE SMALL SACHET
-                        </span>
-                        <br />
-                        <span class="subtitle-1 grey--text">
-                          CURRENT PRO :
-                          {{ firstFormPrO === null ? '-' : firstFormPrO }}
-                        </span>
+                        <v-row>
+                          <v-col cols="2" sm="2">
+                            <v-img src="/image/layout/form1.png" />
+                          </v-col>
+                          <v-col cols="10" sm="10">
+                            <span class="title blue--text">
+                              CHECKLIST CLEARANCE SMALL SACHET
+                            </span>
+                            <br />
+                            <span class="subtitle-1 grey--text">
+                              CURRENT PRO :
+                              {{ firstFormPrO === null ? '-' : firstFormPrO }}
+                            </span>
+                          </v-col>
+                        </v-row>
                       </v-list-item-content>
                     </template>
                     <v-list-item
@@ -74,21 +81,28 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="12" sm="12" md="12">
-            <v-card>
+          <v-col cols="11" sm="11" md="11">
+            <v-card class="card-form-rounded">
               <v-card-text>
                 <v-list>
                   <v-list-group>
                     <template slot="activator">
                       <v-list-item-content>
-                        <span class="title blue--text">
-                          FILLING SACHET MONITORING
-                        </span>
-                        <br />
-                        <span class="subtitle-1 grey--text">
-                          CURRENT PRO :
-                          {{ secondFormPrO === null ? '-' : secondFormPrO }}
-                        </span>
+                        <v-row>
+                          <v-col cols="2" sm="2">
+                            <v-img src="/image/layout/form2.png" />
+                          </v-col>
+                          <v-col cols="10" sm="10">
+                            <span class="title blue--text">
+                              FILLING SACHET MONITORING
+                            </span>
+                            <br />
+                            <span class="subtitle-1 grey--text">
+                              CURRENT PRO :
+                              {{ secondFormPrO === null ? '-' : secondFormPrO }}
+                            </span>
+                          </v-col>
+                        </v-row>
                       </v-list-item-content>
                     </template>
                     <v-list-item
@@ -120,21 +134,28 @@
               </v-card-text>
             </v-card>
           </v-col>
-          <v-col cols="12" sm="12" md="12">
-            <v-card>
+          <v-col cols="11" sm="11" md="11">
+            <v-card class="card-form-rounded">
               <v-card-text>
                 <v-list>
                   <v-list-group>
                     <template slot="activator">
                       <v-list-item-content>
-                        <span class="title blue--text">
-                          PACKING SACHET MONITORING
-                        </span>
-                        <br />
-                        <span class="subtitle-1 grey--text">
-                          CURRENT PRO :
-                          {{ thirdFormPrO === null ? '-' : thirdFormPrO }}
-                        </span>
+                        <v-row>
+                          <v-col cols="2" sm="2">
+                            <v-img src="/image/layout/form3.png" />
+                          </v-col>
+                          <v-col cols="10" sm="10">
+                            <span class="title blue--text">
+                              PACKING SACHET MONITORING
+                            </span>
+                            <br />
+                            <span class="subtitle-1 grey--text">
+                              CURRENT PRO :
+                              {{ thirdFormPrO === null ? '-' : thirdFormPrO }}
+                            </span>
+                          </v-col>
+                        </v-row>
                       </v-list-item-content>
                     </template>
                     <v-list-item
@@ -827,3 +848,8 @@ export default {
   }
 }
 </script>
+<style>
+.card-form-rounded {
+  border-radius: 10px;
+}
+</style>
