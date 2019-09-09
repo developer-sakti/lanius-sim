@@ -29,11 +29,11 @@
           </v-card>
         </v-col>
         <v-col cols="5" sm="5">
-          <v-card to="/inspection" class="menu-card-rounded">
+          <v-card class="menu-card-rounded">
             <v-card-text class="py-0">
               <v-row justify="center">
                 <v-col cols="8" sm="8">
-                  <v-img src="/image/menu/engineering.png" />
+                  <v-img src="/image/lock/engineering.png" />
                 </v-col>
                 <v-col cols="12" sm="12" class="text-center">
                   <span class="headline font-weight-bold text-color mr-3">
@@ -45,11 +45,11 @@
           </v-card>
         </v-col>
         <v-col cols="5" sm="5">
-          <v-card to="/inspection" class="menu-card-rounded">
+          <v-card class="menu-card-rounded">
             <v-card-text class="py-0">
               <v-row justify="center">
                 <v-col cols="9" sm="9" class="mt-3">
-                  <v-img src="/image/menu/line-tfd.png" />
+                  <v-img src="/image/lock/line-tfd.png" />
                 </v-col>
                 <v-col cols="12" sm="12" class="text-center">
                   <span class="headline font-weight-bold text-color mr-3">
@@ -65,7 +65,7 @@
             <v-card-text class="py-0">
               <v-row justify="center">
                 <v-col cols="7" sm="7" class="mt-5">
-                  <v-img src="/image/menu/wh.png" />
+                  <v-img src="/image/lock/wh.png" />
                 </v-col>
                 <v-col cols="12" sm="12" class="text-center">
                   <span class="headline font-weight-bold text-color mr-3">
