@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center" class="mt-5">
-      <v-btn-toggle v-model="menu">
+      <v-btn-toggle v-model="menu" rounded>
         <v-btn
           width="40vw"
           :value="1"
