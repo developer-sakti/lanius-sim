@@ -267,7 +267,7 @@ export default {
         this.arrayForm = { ...JSON.parse(form) }
       } else {
         for (let i = 0; i < 8; i++) {
-          this.arrayForm.push(this.form)
+          this.arrayForm.push({ ...this.form })
         }
       }
     }
