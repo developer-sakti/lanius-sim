@@ -195,8 +195,8 @@
             <v-col cols="12" sm="5" class="py-0">
               <v-select
                 v-model="widget"
-                label="widget"
-                :rules="[v => !!v || 'widget is required']"
+                label="Widget"
+                :rules="[v => !!v || 'Widget is required']"
                 outlined
                 :items="widgets"
                 item-text="name"
@@ -347,7 +347,7 @@
         </v-form>
       </v-window-item>
     </v-window>
-    <v-dialog v-model="dialogCloseClearance" max-width="80vw">
+    <v-dialog v-model="dialogCloseClearance" max-width="80vw" persistent>
       <v-card>
         <v-card-title class="primary white--text">
           <v-row justify="center">
@@ -357,6 +357,24 @@
         <v-card-text>
           <v-form ref="closeProForm1" lazy-validation>
             <v-row>
+              <v-col v-if="firstFormSubmitProgress != 0" cols="12" sm="12">
+                <v-progress-linear
+                  v-model="firstFormSubmitProgress"
+                  color="blue-grey"
+                  height="25"
+                  striped
+                  reactive
+                >
+                  <template v-slot="{ value }">
+                    <strong>{{ Math.ceil(value) }}%</strong>
+                  </template>
+                </v-progress-linear>
+              </v-col>
+              <v-col cols="12" sm="12">
+                <v-alert v-model="firstFormAlert" type="warning" dismissible>
+                  Form belum lengkap
+                </v-alert>
+              </v-col>
               <v-col sm="12" cols="12">
                 <v-text-field
                   v-model="firstFormReporter.bib_operator"
@@ -379,10 +397,21 @@
         </v-card-text>
         <v-card-actions class="pb-3 pt-0 mt-0">
           <v-spacer />
-          <v-btn text class="warning" @click="dialogCloseClearance = false">
+          <v-btn
+            text
+            class="warning"
+            :disabled="firstFormSubmitProgress != 0"
+            @click="dialogCloseClearance = false"
+          >
             Cancel
           </v-btn>
-          <v-btn class="primary" @click="submitFirstForm()">Submit</v-btn>
+          <v-btn
+            class="primary"
+            :disabled="firstFormSubmitProgress != 0"
+            @click="submitFirstForm()"
+          >
+            Submit
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -396,6 +425,24 @@
         <v-card-text>
           <v-form ref="closeProForm2" lazy-validation>
             <v-row>
+              <v-col v-if="secondFormSubmitProgress != 0" cols="12" sm="12">
+                <v-progress-linear
+                  v-model="secondFormSubmitProgress"
+                  color="blue-grey"
+                  height="25"
+                  striped
+                  reactive
+                >
+                  <template v-slot="{ value }">
+                    <strong>{{ Math.ceil(value) }}%</strong>
+                  </template>
+                </v-progress-linear>
+              </v-col>
+              <v-col cols="12" sm="12">
+                <v-alert v-model="secondFormAlert" type="warning" dismissible>
+                  Form belum lengkap
+                </v-alert>
+              </v-col>
               <v-col sm="9" cols="9" class="pb-0">
                 <v-text-field
                   v-model="secondFormReporter.previous_operator.name"
@@ -473,6 +520,24 @@
         <v-card-text>
           <v-form ref="closeProForm3" lazy-validation>
             <v-row>
+              <v-col v-if="thirdFormSubmitProgress != 0" cols="12" sm="12">
+                <v-progress-linear
+                  v-model="thirdFormSubmitProgress"
+                  color="blue-grey"
+                  height="25"
+                  striped
+                  reactive
+                >
+                  <template v-slot="{ value }">
+                    <strong>{{ Math.ceil(value) }}%</strong>
+                  </template>
+                </v-progress-linear>
+              </v-col>
+              <v-col cols="12" sm="12">
+                <v-alert v-model="thirdFormAlert" type="warning" dismissible>
+                  Form belum lengkap
+                </v-alert>
+              </v-col>
               <v-col sm="9" cols="9" class="pb-0">
                 <v-text-field
                   v-model="thirdFormReporter.previous_operator.name"
@@ -658,8 +723,14 @@ export default {
         next_supervisor: null
       },
       firstFormPrO: null,
+      firstFormSubmitProgress: 0,
+      firstFormAlert: false,
       secondFormPrO: null,
+      secondFormSubmitProgress: 0,
+      secondFormAlert: false,
       thirdFormPrO: null,
+      thirdFormAlert: false,
+      thirdFormSubmitProgress: 0,
       dialogCloseClearance: false,
       dialogCloseFilling: false,
       dialogClosePacking: false,
@@ -798,6 +869,7 @@ export default {
     },
     saveSimTwo() {
       if (this.$refs.formCondition.validate()) {
+        this.loadingSubmit = true
         this.$axios
           .post(process.env.SIM_TWO_API + '/bff/submissions', {
             shift: this.shift,
@@ -810,13 +882,18 @@ export default {
             ]
           })
           .then(res => {
+            this.loadingSubmit = false
             console.log(res)
+          })
+          .catch(err => {
+            this.loadingSubmit = false
+            console.log(err)
           })
       }
     },
     saveSimOne() {
-      this.loadingDraft = true
       if (this.$refs.formCondition.validate()) {
+        this.loadingDraft = true
         this.$axios
           .post(process.env.SIM_ONE_API + '/operationalconditions', {
             widget: this.widget,
@@ -831,18 +908,434 @@ export default {
             this.loadingDraft = false
             this.$refs.formCondition.reset()
           })
+          .catch(err => {
+            console.log(err)
+            this.loadingDraft = false
+          })
       }
     },
-    submitFirstForm() {
+    async submitFirstForm() {
       if (this.$refs.closeProForm1.validate()) {
+        let firstFormId,
+          prevProductId,
+          nextProductId,
+          nextProductChildId,
+          fiberCheckId
+        const information = JSON.parse(
+          localStorage.getItem(constant.FISRT_FORM_I_PRODUCTION)
+        )
+        const prevProduct = JSON.parse(
+          localStorage.getItem(constant.FISRT_FORM_C_PRO_PREVIOUS_PRODUCT)
+        )
+        const nextProduct = JSON.parse(
+          localStorage.getItem(constant.FISRT_FORM_P_PRO_NEXT_PRODUCT)
+        )
+        const fiberCheck = JSON.parse(
+          localStorage.getItem(constant.FISRT_FORM_FIBER_CHECK)
+        )
+        const unnormal = JSON.parse(
+          localStorage.getItem(constant.FISRT_FORM_UNNORMAL)
+        )
+        if (
+          information !== undefined &&
+          information !== null &&
+          prevProduct !== undefined &&
+          prevProduct !== null &&
+          nextProduct !== undefined &&
+          nextProduct !== null &&
+          fiberCheck !== undefined &&
+          fiberCheck !== null &&
+          unnormal !== undefined &&
+          unnormal !== null
+        ) {
+          // post first form
+          firstFormId = await this.storeForm('/firstforms', {})
+        } else {
+          this.firstFormAlert = true
+        }
+        // post first form child
+        if (firstFormId !== undefined) {
+          await Promise.all([
+            this.storeForm('/informationproductions', {
+              ...information,
+              firstform: firstFormId
+            }),
+            this.storeForm('/clearencepropreviousproducts', {
+              firstform: firstFormId
+            }),
+            this.storeForm('/ppronextproducts', {
+              firstform: firstFormId
+            }),
+            this.storeForm('/fiberchecks', {
+              firstform: firstFormId
+            }),
+            this.storeForm('/unnormals', {
+              ...unnormal,
+              firstform: firstFormId
+            }),
+            this.storeForm('/reporters', {
+              ...this.firstFormReporter,
+              firstform: firstFormId
+            })
+          ]).then(res => {
+            prevProductId = res[1]
+            nextProductId = res[2]
+            fiberCheckId = res[3]
+          })
+
+          // post previous product child
+          if (prevProductId !== undefined) {
+            await Promise.all([
+              this.storeForm('/weighings', {
+                ...prevProduct.weighing,
+                clearencepropreviousproduct: prevProductId
+              }),
+              this.storeForm('/dbrmsas', {
+                ...prevProduct.d_b_rm_sa,
+                clearencepropreviousproduct: prevProductId
+              }),
+              this.storeForm('/fillings', {
+                ...prevProduct.filling,
+                clearencepropreviousproduct: prevProductId
+              }),
+              this.storeForm('/packings', {
+                ...prevProduct.packing,
+                clearencepropreviousproduct: prevProductId
+              })
+            ])
+          }
+
+          // post next product child
+          if (nextProductId !== undefined) {
+            nextProductChildId = await Promise.all([
+              this.storeForm('/nextweighings', {
+                ...nextProduct.weighing,
+                rm_completeness: null,
+                ppronextproduct: nextProductId
+              }),
+              this.storeForm('/nextdbrmsas', {
+                ...nextProduct.d_b_rm_sa,
+                dumping_rm: null,
+                ppronextproduct: nextProductId
+              }),
+              this.storeForm('/nextfillings', {
+                ...nextProduct.filling,
+                set_filling: null,
+                material_alufoil: null,
+                set_code_sachet_fg: null,
+                set_net_weight: null,
+                ver_hor_seal_check: null,
+                ppronextproduct: nextProductId
+              }),
+              this.storeForm('/nextpackings', {
+                ...nextProduct.packing,
+                scoop_change: null,
+                set_code_folding_box: null,
+                set_code_outer_carton: null,
+                ppronextproduct: nextProductId
+              })
+            ])
+            if (nextProductChildId[0] !== undefined) {
+              this.storeForm('/rmcompletenesses', {
+                ...nextProduct.weighing.rm_completeness,
+                nextweighing: nextProductChildId[0]
+              })
+            }
+            if (nextProductChildId[1] !== undefined) {
+              this.storeForm('/dumpingrms', {
+                ...nextProduct.d_b_rm_sa.dumping_rm,
+                nextdbrmsa: nextProductChildId[1]
+              })
+            }
+            if (nextProductChildId[2] !== undefined) {
+              await Promise.all([
+                this.storeForm('/setfillings', {
+                  ...nextProduct.filling.set_filling,
+                  nextfilling: nextProductChildId[2]
+                }),
+                this.storeForm('/materialalufoils', {
+                  ...nextProduct.filling.set_filling,
+                  nextfilling: nextProductChildId[2]
+                }).then(res => {
+                  if (res !== undefined) {
+                    this.storeUpload(
+                      nextProduct.filling.material_alufoil.image,
+                      'materialalufoil',
+                      res
+                    )
+                  }
+                }),
+                this.storeForm('/setcodesachetfgs', {
+                  ...nextProduct.filling.set_code_sachet_fg,
+                  nextfilling: nextProductChildId[2]
+                }).then(res => {
+                  if (res !== undefined) {
+                    this.storeUpload(
+                      nextProduct.filling.set_code_sachet_fg.image,
+                      'setcodesachetfg',
+                      res
+                    )
+                  }
+                }),
+                this.storeForm('/setnetweights', {
+                  ...nextProduct.filling.set_net_weight,
+                  nextfilling: nextProductChildId[2]
+                }),
+                this.storeForm('/verhorsealchecks', {
+                  ...nextProduct.filling.ver_hor_seal_check,
+                  nextfilling: nextProductChildId[2]
+                })
+              ])
+            }
+            if (nextProductChildId[3] !== undefined) {
+              await Promise.all([
+                this.storeForm('/scoopchanges', {
+                  ...nextProduct.packing.scoop_change,
+                  nextpacking: nextProductChildId[3]
+                }),
+                this.storeForm('/setcodefoldingboxes', {
+                  ...nextProduct.packing.set_code_folding_box,
+                  nextpacking: nextProductChildId[2]
+                }).then(res => {
+                  if (res !== undefined) {
+                    this.storeUpload(
+                      nextProduct.packing.set_code_folding_box.image,
+                      'setcodefoldingbox',
+                      res
+                    )
+                  }
+                }),
+                this.storeForm('/setcodeoutercartons', {
+                  ...nextProduct.packing.set_code_outer_carton,
+                  nextpacking: nextProductChildId[2]
+                }).then(res => {
+                  if (res !== undefined) {
+                    this.storeUpload(
+                      nextProduct.packing.set_code_outer_carton.image,
+                      'setcodeoutercarton',
+                      res
+                    )
+                  }
+                })
+              ])
+            }
+          }
+
+          // post fiber check child
+          if (fiberCheckId !== undefined) {
+            await Promise.all([
+              this.storeForm('/frontalufoils', {
+                ...fiberCheck.front_alufoil,
+                fibercheck: fiberCheckId
+              }),
+              this.storeForm('/backalufoils', {
+                ...fiberCheck.back_alufoil,
+                fibercheck: fiberCheckId
+              }),
+              this.storeForm('/topalufoils', {
+                ...fiberCheck.top_alufoil,
+                fibercheck: fiberCheckId
+              }),
+              this.storeForm('/sidealufoils', {
+                ...fiberCheck.side_alufoil,
+                fibercheck: fiberCheckId
+              }),
+              this.storeForm('/frontfillings', {
+                ...fiberCheck.front_filling,
+                fibercheck: fiberCheckId
+              }),
+              this.storeForm('/backfillings', {
+                ...fiberCheck.back_filling,
+                fibercheck: fiberCheckId
+              }),
+              this.storeForm('/topfillings', {
+                ...fiberCheck.top_filling,
+                fibercheck: fiberCheckId
+              }),
+              this.storeForm('/sidefillings', {
+                ...fiberCheck.side_filling,
+                fibercheck: fiberCheckId
+              })
+            ]).then(res => {
+              this.firstFormSubmitProgress = 100
+            })
+          }
+        }
       }
     },
-    submitSecondForm() {
+    async submitSecondForm() {
       if (this.$refs.closeProForm2.validate()) {
+        const information = JSON.parse(
+          localStorage.getItem(constant.SECOND_FORM_I_PRODUCTION)
+        )
+        const machineCond = JSON.parse(
+          localStorage.getItem(constant.SECOND_FORM_MACHINE_CONDITION)
+        )
+        const rotaryMagnet = JSON.parse(
+          localStorage.getItem(constant.SECOND_FORM_ROTARY_MAGNET_SAMPLE)
+        )
+        const autoqualities = JSON.parse(
+          localStorage.getItem(constant.SECOND_FORM_AUTOQUALITY_CHECK)
+        )
+        const note = JSON.parse(localStorage.getItem(constant.SECOND_FORM_NOTE))
+        const formId = await this.storeForm('/secondaryforms', {})
+        if (formId !== undefined) {
+          await Promise.all([
+            this.storeForm('​/secondaryinformationproductions', {
+              ...information,
+              secondaryform: formId
+            }),
+            this.storeForm('​/secondarymachineconditions', {
+              ...machineCond,
+              jaw_seal: null,
+              secondaryform: formId
+            }).then(res => {
+              if (res !== undefined) {
+                this.storeForm('/jawseals', {
+                  ...machineCond.jaw_seal,
+                  secondarymachinecondition: res
+                }).then(res => {
+                  if (res !== undefined) {
+                    this.storeUpload(machineCond.jaw_seal.image, 'jawseal', res)
+                  }
+                })
+              }
+            }),
+            this.storeForm('​/secondaryrotarymagnetsamples', {
+              ...rotaryMagnet,
+              secondaryform: formId
+            }),
+            this.storeForm('​/secondarynotes', {
+              ...note,
+              secondaryform: formId
+            }),
+            this.storeForm('​/secondaryreporters', {
+              ...this.secondFormReporter,
+              previous_operator: null,
+              next_operator: null,
+              secondaryform: formId
+            }).then(res => {
+              if (res !== undefined) {
+                this.storeForm('/previousoperators', {
+                  ...this.secondFormReporter.previous_operator,
+                  secondaryreporter: res,
+                  thirdreporter: null
+                })
+                this.storeForm('/nextoperators', {
+                  ...this.secondFormReporter.next_operator,
+                  secondaryreporter: res,
+                  thirdreporter: null
+                })
+              }
+            })
+          ])
+
+          autoqualities.forEach(item => {
+            this.storeForm('/secondaryautoqualitychecks', {
+              ...item,
+              secondaryform: formId,
+              code: null,
+              o2_level: null
+            }).then(res => {
+              if (res !== undefined) {
+                this.storeForm('/otwolevels', {
+                  ...item,
+                  secondaryautoqualitycheck: res
+                })
+                // code
+              }
+            })
+          })
+        }
       }
     },
-    submitThirdForm() {
+    async submitThirdForm() {
       if (this.$refs.closeProForm3.validate()) {
+        const information = JSON.parse(
+          localStorage.getItem(constant.THIRD_FORM_I_PRODUCTION)
+        )
+        const checkweigher = JSON.parse(
+          localStorage.getItem(constant.THIRD_FORM_CHECKWEIGHER_XRAY_TWO_HOUR)
+        )
+        const checkxray = JSON.parse(
+          localStorage.getItem(constant.THIRD_FORM_XRAY_CHECK_ONE_HOUR)
+        )
+        const note = JSON.parse(localStorage.getItem(constant.THIRD_FORM_NOTE))
+        const formId = await this.storeForm('/thirdforms', {})
+        if (formId !== undefined) {
+          await Promise.all([
+            this.storeForm('/thirdinformationproductions', {
+              ...information,
+              thirdform: formId
+            }),
+            this.storeForm('/thirdnotes', {
+              ...note,
+              thirdform: formId
+            }),
+            this.storeForm('/thirdreporters', {
+              ...this.thirdFormReporter,
+              previous_operator: null,
+              next_operator: null,
+              thirdform: formId
+            }).then(res => {
+              if (res !== undefined) {
+                this.storeForm('/previousoperators', {
+                  ...this.secondFormReporter.previous_operator,
+                  secondaryreporter: null,
+                  thirdreporter: res
+                })
+                this.storeForm('/nextoperators', {
+                  ...this.secondFormReporter.next_operator,
+                  secondaryreporter: null,
+                  thirdreporter: res
+                })
+              }
+            })
+          ])
+          await checkweigher.forEach(item => {
+            this.storeForm('/thirdcheckweigherxraytwohours', {
+              ...item,
+              weight: null,
+              thirdform: formId
+            }).then(res => {
+              if (res !== undefined) {
+                this.storeForm('/weights', {
+                  ...item.weight,
+                  thirdcheckweigherxraytwohour: res
+                })
+              }
+            })
+          })
+          await checkxray.forEach(item => {
+            this.storeForm('/xraycheckonehours', { ...item, thirdform: formId })
+          })
+        }
+      }
+    },
+    storeForm(path, payload) {
+      return this.$axios
+        .post(this.simOneApi + path, payload)
+        .then(res => {
+          this.firstFormSubmitProgress += 2
+          if (res.status === 200) {
+            return res.data.id
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          return undefined
+        })
+    },
+    storeUpload(file, ref, refId) {
+      if (file !== null && ref !== null && refId !== null) {
+        const form = new FormData()
+        form.append('files', file)
+        form.append('ref', ref)
+        form.append('refId', refId)
+        form.append('field', 'image')
+        this.$axios.post(this.simOneApi + '/upload', form).then(res => {
+          this.firstFormSubmitProgress += 3
+        })
       }
     }
   }

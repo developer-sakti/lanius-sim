@@ -90,5 +90,8 @@ export default {
     SIM_TWO_USERNAME: 'sentul',
     SIM_TWO_PASSWORD: '@admin123',
     SIM_ONE_API: 'http://10.203.196.31:1337'
+    // development
+    // SIM_TWO_PASSWORD: 'laniuslab',
+    // SIM_ONE_API: 'http://192.168.1.4:1337'
   }
 }

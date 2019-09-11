@@ -33,7 +33,10 @@
       "o2_level": {
         "value": "string",
         "type": "string"
-      }
+      },
+      "temperature": null,
+      "rh": null,
+      "pressure": null
     }
   ],
   "note": {

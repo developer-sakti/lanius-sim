@@ -9,7 +9,7 @@
   },
   "c_pro_previous_product": {
     "weighing": {
-      "l_previous_pro": 0,
+      "i_previous_pro": 0,
       "material_residu": 0,
       "weight_equipment": 0,
       "weight_rock_child": 0,
