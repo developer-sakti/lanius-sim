@@ -169,7 +169,7 @@
                   </v-col>
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
-                      v-model="item.temperatur"
+                      v-model="item.temperature"
                       :rules="[v => v !== null || 'This field is required']"
                       outlined
                     />
@@ -252,7 +252,7 @@ export default {
           value: null,
           type: null
         },
-        temperatur: null,
+        temperature: null,
         rh: null,
         pressure: null
       },

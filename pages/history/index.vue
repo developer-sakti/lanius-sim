@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <v-row justify="center" class="mt-5">
+    <v-row justify="center">
       <v-btn-toggle v-model="menu" rounded>
         <v-btn
-          width="40vw"
+          width="35vw"
           :value="1"
           :class="
             menu == 1
@@ -15,7 +15,7 @@
         </v-btn>
         <v-btn
           :value="2"
-          width="40vw"
+          width="35vw"
           :class="
             menu == 2
               ? 'primary title font-weight-bold'
@@ -135,7 +135,7 @@
       </v-window-item>
       <v-window-item :value="2">
         <v-form ref="historyFilter" v-model="valid">
-          <v-row class="mt-3">
+          <v-row class="mt-5">
             <v-col cols="3" sm="3" offset-sm="1" class="pl-0 pb-0">
               <v-menu
                 ref="inputDate"
@@ -185,10 +185,10 @@
             <v-card
               v-for="item in operationalHistories"
               :key="item.id"
-              class="card-round mb-3"
+              class="card-round-history primary mb-3"
               elevation="0"
             >
-              <v-card-text class="subtitle-2">
+              <v-card-text class="subtitle-2 white--text">
                 <v-row>
                   <v-col cols="2" class="py-0">
                     Widget
@@ -217,7 +217,7 @@
         </v-row>
         <v-row v-else>
           <v-col cols="6" offset-sm="1">
-            <v-alert outlined type="info">
+            <v-alert type="info">
               Tidak ada data
             </v-alert>
           </v-col>
@@ -277,10 +277,8 @@ export default {
 }
 </script>
 <style>
-.card-round {
-  border: 2px solid #81d4fa !important;
-  background: transparent !important;
-  border-radius: 5px;
+.card-round-history {
+  border-radius: 15px;
 }
 .image-wrapper {
   z-index: 999;

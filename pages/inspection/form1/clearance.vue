@@ -7,14 +7,14 @@
       <v-col
         cols="10"
         sm="10"
-        class="text-center subtitle-1 primary--text pt-0 font-weight-bold"
+        class="text-center subtitle-2 primary--text pt-0 font-weight-bold"
       >
         {{ title }}
       </v-col>
       <v-col cols="10" sm="10">
         <v-row class="primary--text subtitle-1 font-weight-bold">
           <v-col cols="12" sm="6">Parameter Cek</v-col>
-          <v-col cols="12" sm="3">Standart</v-col>
+          <v-col cols="12" sm="3">Standard</v-col>
           <v-col cols="12" sm="3">Status</v-col>
         </v-row>
         <v-form ref="formClearance">
@@ -28,9 +28,11 @@
                 <v-col cols="12" sm="3">Kosong</v-col>
                 <v-col cols="12" sm="3">
                   <v-checkbox
-                    v-model="form.weighing.l_previous_pro"
+                    v-model="form.weighing.i_previous_pro"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
-                    :label="form.weighing.l_previous_pro == 0 ? 'Not OK' : 'OK'"
+                    :label="form.weighing.i_previous_pro == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Sisa Material</v-col>
@@ -38,6 +40,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.weighing.material_residu"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="
                       form.weighing.material_residu == 0 ? 'Not OK' : 'OK'
@@ -51,6 +55,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.weighing.weight_equipment"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="
                       form.weighing.weight_equipment == 0 ? 'Not OK' : 'OK'
@@ -62,6 +68,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.weighing.weight_rock_child"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="
                       form.weighing.weight_rock_child == 0 ? 'Not OK' : 'OK'
@@ -73,6 +81,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.weighing.rubbish"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.weighing.rubbish == 0 ? 'Not OK' : 'OK'"
                   />
@@ -89,6 +99,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.d_b_rm_sa.last_batch"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.d_b_rm_sa.last_batch == 0 ? 'Not OK' : 'OK'"
                   />
@@ -98,6 +110,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.d_b_rm_sa.conveyor"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.d_b_rm_sa.conveyor == 0 ? 'Not OK' : 'OK'"
                   />
@@ -107,6 +121,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.d_b_rm_sa.is_blending_done"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="
                       form.d_b_rm_sa.is_blending_done == 0 ? 'Not OK' : 'OK'
@@ -118,6 +134,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.d_b_rm_sa.vacum_cleaner"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.d_b_rm_sa.vacum_cleaner == 0 ? 'Not OK' : 'OK'"
                   />
@@ -127,6 +145,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.d_b_rm_sa.screen_dumping_station"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="
                       form.d_b_rm_sa.screen_dumping_station == 0
@@ -140,6 +160,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.d_b_rm_sa.blender"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.d_b_rm_sa.blender == 0 ? 'Not OK' : 'OK'"
                   />
@@ -149,6 +171,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.d_b_rm_sa.rotary_magnet"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.d_b_rm_sa.rotary_magnet == 0 ? 'Not OK' : 'OK'"
                   />
@@ -160,6 +184,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.d_b_rm_sa.vibro_tailing"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.d_b_rm_sa.vibro_tailing == 0 ? 'Not OK' : 'OK'"
                   />
@@ -169,6 +195,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.d_b_rm_sa.rubbish"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.d_b_rm_sa.rubbish == 0 ? 'Not OK' : 'OK'"
                   />
@@ -185,6 +213,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.filling.auto_sampler"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.filling.auto_sampler == 0 ? 'Not OK' : 'OK'"
                   />
@@ -194,6 +224,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.filling.hopper_filling"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.filling.hopper_filling == 0 ? 'Not OK' : 'OK'"
                   />
@@ -203,6 +235,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.filling.aluminium_foil_residu"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="
                       form.filling.aluminium_foil_residu == 0 ? 'Not OK' : 'OK'
@@ -214,6 +248,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.filling.rejection_check_weigher"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="
                       form.filling.rejection_check_weigher == 0
@@ -227,6 +263,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.filling.conveyor"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.filling.conveyor == 0 ? 'Not OK' : 'OK'"
                   />
@@ -236,6 +274,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.filling.sample_fg"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.filling.sample_fg == 0 ? 'Not OK' : 'OK'"
                   />
@@ -245,6 +285,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.filling.reject_fg"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.filling.reject_fg == 0 ? 'Not OK' : 'OK'"
                   />
@@ -254,6 +296,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.filling.rejected_powder"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.filling.rejected_powder == 0 ? 'Not OK' : 'OK'"
                   />
@@ -270,6 +314,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.packing.conveyor"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.packing.conveyor == 0 ? 'Not OK' : 'OK'"
                   />
@@ -279,6 +325,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.packing.cartoner"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.packing.cartoner == 0 ? 'Not OK' : 'OK'"
                   />
@@ -288,6 +336,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.packing.xray_rejection"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.packing.xray_rejection == 0 ? 'Not OK' : 'OK'"
                   />
@@ -297,6 +347,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.packing.sample_fg"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.packing.sample_fg == 0 ? 'Not OK' : 'OK'"
                   />
@@ -306,6 +358,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.packing.reject_fg"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.packing.reject_fg == 0 ? 'Not OK' : 'OK'"
                   />
@@ -315,6 +369,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.packing.reject_powder"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.packing.reject_powder == 0 ? 'Not OK' : 'OK'"
                   />
@@ -324,6 +380,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.packing.casepacker"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.packing.casepacker == 0 ? 'Not OK' : 'OK'"
                   />
@@ -333,6 +391,8 @@
                 <v-col cols="12" sm="3">
                   <v-checkbox
                     v-model="form.packing.scoop"
+                    :true-value="1"
+                    :false-value="0"
                     class="mx-2"
                     :label="form.packing.scoop == 0 ? 'Not OK' : 'OK'"
                   />
@@ -370,7 +430,7 @@ export default {
       title: 'WEIGHING AREA',
       form: {
         weighing: {
-          l_previous_pro: 0,
+          i_previous_pro: 0,
           material_residu: 0,
           weight_equipment: 0,
           weight_rock_child: 0,
