@@ -32,7 +32,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.weighing.i_previous_pro == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Sisa Material</v-col>
@@ -43,9 +42,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="
-                      form.weighing.material_residu == 0 ? 'Not OK' : 'OK'
-                    "
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Peralatan Menimbang</v-col>
@@ -58,9 +54,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="
-                      form.weighing.weight_equipment == 0 ? 'Not OK' : 'OK'
-                    "
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Batu Anak Timbang</v-col>
@@ -71,9 +64,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="
-                      form.weighing.weight_rock_child == 0 ? 'Not OK' : 'OK'
-                    "
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Sampah</v-col>
@@ -84,7 +74,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.weighing.rubbish == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
               </v-row>
@@ -102,7 +91,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.d_b_rm_sa.last_batch == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Conveyor</v-col>
@@ -113,7 +101,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.d_b_rm_sa.conveyor == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Blending sudah dilakukan</v-col>
@@ -124,9 +111,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="
-                      form.d_b_rm_sa.is_blending_done == 0 ? 'Not OK' : 'OK'
-                    "
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Vacuum Cleaner</v-col>
@@ -137,7 +121,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.d_b_rm_sa.vacum_cleaner == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Screen Dumping Station</v-col>
@@ -148,11 +131,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="
-                      form.d_b_rm_sa.screen_dumping_station == 0
-                        ? 'Not OK'
-                        : 'OK'
-                    "
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Blender</v-col>
@@ -163,7 +141,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.d_b_rm_sa.blender == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Rotary Magnet</v-col>
@@ -174,7 +151,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.d_b_rm_sa.rotary_magnet == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">
@@ -187,7 +163,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.d_b_rm_sa.vibro_tailing == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Sampah</v-col>
@@ -198,7 +173,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.d_b_rm_sa.rubbish == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
               </v-row>
@@ -216,7 +190,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.filling.auto_sampler == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Hopper Filling</v-col>
@@ -227,7 +200,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.filling.hopper_filling == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Sisa Aluminium Foil</v-col>
@@ -238,9 +210,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="
-                      form.filling.aluminium_foil_residu == 0 ? 'Not OK' : 'OK'
-                    "
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Rejection Check Weigher</v-col>
@@ -251,11 +220,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="
-                      form.filling.rejection_check_weigher == 0
-                        ? 'Not OK'
-                        : 'OK'
-                    "
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Conveyor</v-col>
@@ -266,7 +230,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.filling.conveyor == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Sample FG</v-col>
@@ -277,7 +240,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.filling.sample_fg == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Reject FG</v-col>
@@ -288,7 +250,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.filling.reject_fg == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Rejected Powder</v-col>
@@ -299,7 +260,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.filling.rejected_powder == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
               </v-row>
@@ -317,7 +277,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.packing.conveyor == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Cartoner</v-col>
@@ -328,7 +287,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.packing.cartoner == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">X-Ray & Rejection</v-col>
@@ -339,7 +297,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.packing.xray_rejection == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Sample FG</v-col>
@@ -350,7 +307,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.packing.sample_fg == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Reject FG</v-col>
@@ -361,7 +317,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.packing.reject_fg == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Reject Powder</v-col>
@@ -372,7 +327,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.packing.reject_powder == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Casepacker</v-col>
@@ -383,7 +337,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.packing.casepacker == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
                 <v-col cols="12" sm="6">Scoop</v-col>
@@ -394,7 +347,6 @@
                     :true-value="1"
                     :false-value="0"
                     class="mx-2"
-                    :label="form.packing.scoop == 0 ? 'Not OK' : 'OK'"
                   />
                 </v-col>
               </v-row>

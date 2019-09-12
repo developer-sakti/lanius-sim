@@ -103,6 +103,7 @@ export default {
   border-radius: 10px;
   margin-left: 10vw;
   background-color: #1fc8db;
-  background-image: linear-gradient(90deg, #00b8d4 10%, #e0f7fa 85%);
+  /* background-image: linear-gradient(90deg, #00b8d4 10%, #e0f7fa 85%); */
+  background-image: linear-gradient(90deg, #29b6f6 10%, #1e88e5 85%);
 }
 </style>

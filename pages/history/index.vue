@@ -30,111 +30,144 @@
       <v-window-item :value="1">
         <v-row class="mt-5 pt-5" justify="center">
           <v-col cols="10" xs="10" sm="10" md="10">
-            <v-list>
-              <v-list-group>
-                <template slot="activator">
-                  <v-list-item-content>
-                    <span class="headline blue--text">
-                      CHECKLIST CLEARANCE SMALL SACHET
-                    </span>
-                  </v-list-item-content>
-                </template>
-                <v-list-item v-for="item in 3" :key="item">
-                  <v-list-item-content class="blue--text">
-                    <v-row align="center">
-                      <v-col cols="10" sm="9"
-                        >1010131313 (10 Agustus 2019)</v-col
-                      >
-                      <v-col cols="10" sm="1">
-                        <v-btn icon color="primary">
-                          <v-icon dark size="40">zoom_in</v-icon>
-                        </v-btn>
-                      </v-col>
-                      <v-col cols="10" sm="1">
-                        <v-btn icon color="primary">
-                          <v-icon dark size="35"
-                            >mdi-cloud-download-outline</v-icon
+            <v-card class="card-history-rounded">
+              <v-card-text>
+                <v-list>
+                  <v-list-group>
+                    <template slot="activator">
+                      <v-list-item-content>
+                        <v-row align="center">
+                          <v-col cols="2" sm="2">
+                            <v-img src="/image/layout/form1.png" />
+                          </v-col>
+                          <v-col cols="10" sm="10">
+                            <span class="title blue--text">
+                              CHECKLIST CLEARANCE SMALL SACHET
+                            </span>
+                          </v-col>
+                        </v-row>
+                      </v-list-item-content>
+                    </template>
+                    <v-list-item v-for="item in 3" :key="item">
+                      <v-list-item-content class="blue--text">
+                        <v-row align="center">
+                          <v-col cols="10" sm="9"
+                            >1010131313 (10 Agustus 2019)</v-col
                           >
-                        </v-btn>
-                      </v-col>
-                    </v-row>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-group>
-            </v-list>
+                          <v-col cols="10" sm="1">
+                            <v-btn icon color="primary">
+                              <v-icon dark size="40">zoom_in</v-icon>
+                            </v-btn>
+                          </v-col>
+                          <v-col cols="10" sm="1">
+                            <v-btn icon color="primary">
+                              <v-icon dark size="35"
+                                >mdi-cloud-download-outline</v-icon
+                              >
+                            </v-btn>
+                          </v-col>
+                        </v-row>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list-group>
+                </v-list>
+              </v-card-text>
+            </v-card>
           </v-col>
           <v-col cols="10" xs="10" sm="10" md="10">
-            <v-list>
-              <v-list-group>
-                <template slot="activator">
-                  <v-list-item-content>
-                    <span class="headline blue--text">
-                      FILLING SACHET MONITORING
-                    </span>
-                  </v-list-item-content>
-                </template>
-                <v-list-item v-for="item in 3" :key="item">
-                  <v-list-item-content class="blue--text">
-                    <v-row>
-                      <v-col cols="10" sm="9"
-                        >1010131313 (10 Agustus 2019)</v-col
-                      >
-                      <v-col cols="10" sm="1">
-                        <v-btn icon color="primary">
-                          <v-icon dark size="40">zoom_in</v-icon>
-                        </v-btn>
-                      </v-col>
-                      <v-col cols="10" sm="1">
-                        <v-btn text small icon color="primary">
-                          <v-icon dark size="35"
-                            >mdi-cloud-download-outline</v-icon
+            <v-card class="card-history-rounded">
+              <v-card-text>
+                <v-list>
+                  <v-list-group>
+                    <template slot="activator">
+                      <v-list-item-content>
+                        <v-row align="center">
+                          <v-col cols="2" sm="2">
+                            <v-img src="/image/layout/form2.png" />
+                          </v-col>
+                          <v-col cols="10" sm="10">
+                            <span class="title blue--text">
+                              FILLING SACHET MONITORING
+                            </span>
+                          </v-col>
+                        </v-row>
+                      </v-list-item-content>
+                    </template>
+                    <v-list-item v-for="item in 3" :key="item">
+                      <v-list-item-content class="blue--text">
+                        <v-row>
+                          <v-col cols="10" sm="9"
+                            >1010131313 (10 Agustus 2019)</v-col
                           >
-                        </v-btn>
-                      </v-col>
-                    </v-row>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-group>
-            </v-list>
+                          <v-col cols="10" sm="1">
+                            <v-btn icon color="primary">
+                              <v-icon dark size="40">zoom_in</v-icon>
+                            </v-btn>
+                          </v-col>
+                          <v-col cols="10" sm="1">
+                            <v-btn text small icon color="primary">
+                              <v-icon dark size="35"
+                                >mdi-cloud-download-outline</v-icon
+                              >
+                            </v-btn>
+                          </v-col>
+                        </v-row>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list-group>
+                </v-list>
+              </v-card-text>
+            </v-card>
           </v-col>
           <v-col cols="10" xs="10" sm="10" md="10">
-            <v-list>
-              <v-list-group>
-                <template slot="activator">
-                  <v-list-item-content>
-                    <span class="headline blue--text">
-                      PACKING SACHET MONITORING
-                    </span>
-                  </v-list-item-content>
-                </template>
-                <v-list-item v-for="item in 3" :key="item">
-                  <v-list-item-content class="blue--text">
-                    <v-row>
-                      <v-col cols="10" sm="9">
-                        1010131313 (10 Agustus 2019)
-                      </v-col>
-                      <v-col cols="10" sm="1">
-                        <v-btn icon color="primary">
-                          <v-icon dark size="40">zoom_in</v-icon>
-                        </v-btn>
-                      </v-col>
-                      <v-col cols="10" sm="1">
-                        <v-btn text small icon color="primary">
-                          <v-icon dark size="35"
-                            >mdi-cloud-download-outline</v-icon
-                          >
-                        </v-btn>
-                      </v-col>
-                    </v-row>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-group>
-            </v-list>
+            <v-card class="card-history-rounded">
+              <v-card-text>
+                <v-list>
+                  <v-list-group>
+                    <template slot="activator">
+                      <v-list-item-content>
+                        <v-row align="center">
+                          <v-col cols="2" sm="2">
+                            <v-img src="/image/layout/form3.png" />
+                          </v-col>
+                          <v-col cols="10" sm="10">
+                            <span class="title blue--text">
+                              PACKING SACHET MONITORING
+                            </span>
+                          </v-col>
+                        </v-row>
+                      </v-list-item-content>
+                    </template>
+                    <v-list-item v-for="item in 3" :key="item">
+                      <v-list-item-content class="blue--text">
+                        <v-row>
+                          <v-col cols="10" sm="9">
+                            1010131313 (10 Agustus 2019)
+                          </v-col>
+                          <v-col cols="10" sm="1">
+                            <v-btn icon color="primary">
+                              <v-icon dark size="40">zoom_in</v-icon>
+                            </v-btn>
+                          </v-col>
+                          <v-col cols="10" sm="1">
+                            <v-btn text small icon color="primary">
+                              <v-icon dark size="35"
+                                >mdi-cloud-download-outline</v-icon
+                              >
+                            </v-btn>
+                          </v-col>
+                        </v-row>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list-group>
+                </v-list>
+              </v-card-text>
+            </v-card>
           </v-col>
         </v-row>
       </v-window-item>
       <v-window-item :value="2">
-        <v-form ref="historyFilter" v-model="valid">
+        <v-form ref="historyFilter">
           <v-row class="mt-5">
             <v-col cols="3" sm="3" offset-sm="1" class="pl-0 pb-0">
               <v-menu
@@ -233,7 +266,6 @@ export default {
   middleware: ['user'],
   data() {
     return {
-      valid: false,
       menu: 1,
       datePicker: null,
       shiftOptions: [
@@ -277,8 +309,8 @@ export default {
 }
 </script>
 <style>
-.card-round-history {
-  border-radius: 15px;
+.card-history-rounded {
+  border-radius: 10px;
 }
 .image-wrapper {
   z-index: 999;

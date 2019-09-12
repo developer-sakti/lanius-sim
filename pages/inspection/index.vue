@@ -627,7 +627,7 @@ export default {
         },
         {
           id: 2,
-          subform: 'CLEARaNCE PrO Produk Sebelumnya',
+          subform: 'CLEARANCE PrO Produk Sebelumnya',
           path: '/inspection/form1/clearance'
         },
         {

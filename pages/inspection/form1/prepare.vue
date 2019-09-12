@@ -38,7 +38,11 @@
                 </v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.weighing.bag_rm_condition" />
+                  <v-checkbox
+                    v-model="form.weighing.bag_rm_condition"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>Kelengkapan RM</span>
@@ -58,7 +62,11 @@
                   />
                 </v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.weighing.rm_completeness.status" />
+                  <v-checkbox
+                    v-model="form.weighing.rm_completeness.status"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>Ganti Baju & Sepatu</span>
@@ -71,7 +79,11 @@
                 </v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.weighing.cloth_shoe" />
+                  <v-checkbox
+                    v-model="form.weighing.cloth_shoe"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>Lingkungan & Meja Kerja</span>
@@ -86,7 +98,11 @@
                   -
                 </v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.weighing.environt_table" />
+                  <v-checkbox
+                    v-model="form.weighing.environt_table"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>RH , Temp & Press Diff.</span>
@@ -99,7 +115,11 @@
                 </v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.weighing.rh_temp_press" />
+                  <v-checkbox
+                    v-model="form.weighing.rh_temp_press"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
               </v-row>
             </v-window-item>
@@ -126,7 +146,11 @@
                   />
                 </v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.d_b_rm_sa.dumping_rm.status" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.dumping_rm.status"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>Ganti Baju & Sepatu</span>
@@ -139,7 +163,11 @@
                 </v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.d_b_rm_sa.cloth_shoe" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.cloth_shoe"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>Lingkungan & Meja Kerja</span>
@@ -152,7 +180,11 @@
                 </v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.d_b_rm_sa.environt_table" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.environt_table"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>RH , Temp & Press Diff.</span>
@@ -165,7 +197,11 @@
                 </v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.d_b_rm_sa.rh_temp_press" />
+                  <v-checkbox
+                    v-model="form.d_b_rm_sa.rh_temp_press"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
               </v-row>
             </v-window-item>
@@ -185,7 +221,11 @@
                 </v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.filling.set_autosampler" />
+                  <v-checkbox
+                    v-model="form.filling.set_autosampler"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>Setting Filling</span>
@@ -204,7 +244,11 @@
                   />
                 </v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.filling.set_filling.status" />
+                  <v-checkbox
+                    v-model="form.filling.set_filling.status"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3" class="pb-0">
                   <span>Material Alufoil</span>
@@ -223,10 +267,15 @@
                   />
                 </v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.filling.material_alufoil.status" />
+                  <v-checkbox
+                    v-model="form.filling.material_alufoil.status"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="6" sm="8" class="py-0">
                   <v-file-input
+                    v-model="material_alufoil_image"
                     :rules="required"
                     outlined
                     prepend-icon="mdi-camera"
@@ -259,10 +308,13 @@
                 <v-col cols="12" sm="1">
                   <v-checkbox
                     v-model="form.filling.set_code_sachet_fg.status"
+                    :true-value="1"
+                    :false-value="0"
                   />
                 </v-col>
                 <v-col cols="6" sm="8" class="py-0">
                   <v-file-input
+                    v-model="set_code_sachet_fg_image"
                     :rules="required"
                     outlined
                     prepend-icon="mdi-camera"
@@ -291,7 +343,11 @@
                   />
                 </v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.filling.set_net_weight.status" />
+                  <v-checkbox
+                    v-model="form.filling.set_net_weight.status"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>Dosing Nitrogen</span>
@@ -300,7 +356,11 @@
                 <v-col cols="12" sm="4" class="px-3">-</v-col>
                 <v-col cols="12" sm="2" class="px-3">-</v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.filling.dosing_nitrogen" />
+                  <v-checkbox
+                    v-model="form.filling.dosing_nitrogen"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>Pengecekkan Vertical & Horizontal Seal</span>
@@ -313,14 +373,19 @@
                 <v-col cols="12" sm="4" class="px-3">-</v-col>
                 <v-col cols="12" sm="2" class="px-3">-</v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.filling.ver_hor_seal_check" />
+                  <v-checkbox
+                    v-model="form.filling.ver_hor_seal_check.status"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="6" sm="8" class="py-0">
                   <v-file-input
+                    v-model="ver_hor_seal_check_image"
                     :rules="required"
                     outlined
                     prepend-icon="mdi-camera"
-                    label="Kertan karbon"
+                    label="Kertas karbon"
                   />
                 </v-col>
               </v-row>
@@ -341,7 +406,11 @@
                 </v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.packing.set_xray" />
+                  <v-checkbox
+                    v-model="form.packing.set_xray"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>Ganti Scoop</span>
@@ -360,7 +429,11 @@
                   />
                 </v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.packing.scoop_change.status" />
+                  <v-checkbox
+                    v-model="form.packing.scoop_change.status"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>Ganti Setting Code Folding Box</span>
@@ -384,10 +457,13 @@
                 <v-col cols="12" sm="1">
                   <v-checkbox
                     v-model="form.packing.set_code_folding_box.status"
+                    :true-value="1"
+                    :false-value="0"
                   />
                 </v-col>
                 <v-col cols="6" sm="8" class="py-0">
                   <v-file-input
+                    v-model="set_code_folding_box_image"
                     :rules="required"
                     outlined
                     prepend-icon="mdi-camera"
@@ -421,10 +497,13 @@
                 <v-col cols="12" sm="1">
                   <v-checkbox
                     v-model="form.packing.set_code_outer_carton.status"
+                    :true-value="1"
+                    :false-value="0"
                   />
                 </v-col>
                 <v-col cols="6" sm="8" class="py-0">
                   <v-file-input
+                    v-model="set_code_outer_carton_image"
                     :rules="required"
                     outlined
                     prepend-icon="mdi-camera"
@@ -443,7 +522,11 @@
                 <v-col cols="12" sm="4">-</v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.packing.stock_glue_folding_box" />
+                  <v-checkbox
+                    v-model="form.packing.stock_glue_folding_box"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
                 <v-col cols="12" sm="3">
                   <span>Stock Tinta Print Outer Carton</span>
@@ -452,7 +535,11 @@
                 <v-col cols="12" sm="4">-</v-col>
                 <v-col cols="12" sm="2">-</v-col>
                 <v-col cols="12" sm="1">
-                  <v-checkbox v-model="form.packing.stock_int_outer_carbon" />
+                  <v-checkbox
+                    v-model="form.packing.stock_int_outer_carbon"
+                    :true-value="1"
+                    :false-value="0"
+                  />
                 </v-col>
               </v-row>
             </v-window-item>
@@ -487,6 +574,11 @@ export default {
     return {
       step: 1,
       title: 'WEIGHING AREA',
+      material_alufoil_image: null,
+      set_code_sachet_fg_image: null,
+      ver_hor_seal_check_image: null,
+      set_code_folding_box_image: null,
+      set_code_outer_carton_image: null,
       form: {
         weighing: {
           bag_rm_condition: 0,
@@ -591,19 +683,59 @@ export default {
       )
     },
     next() {
-      this.save()
       this.step++
     },
-    submit() {
+    async submit() {
       if (this.$refs.formPrepare.validate()) {
+        await this.saveImage()
         this.save()
         this.$router.push('/inspection')
       }
     },
-    draft() {
+    async draft() {
+      await this.saveImage()
       this.save()
       this.$router.push('/inspection')
-    }
+    },
+    async saveImage() {
+      this.form.filling.material_alufoil.image = await this.toBaseSixFour(
+        this.material_alufoil_image
+      ).then(res => {
+        return res
+      })
+      this.form.filling.set_code_sachet_fg.image = await this.toBaseSixFour(
+        this.set_code_sachet_fg_image
+      ).then(res => {
+        return res
+      })
+      this.form.filling.ver_hor_seal_check.image = await this.toBaseSixFour(
+        this.ver_hor_seal_check_image
+      ).then(res => {
+        return res
+      })
+      this.form.filling.set_code_folding_box.image = await this.toBaseSixFour(
+        this.set_code_folding_box_image
+      ).then(res => {
+        return res
+      })
+      this.form.filling.set_code_outer_carton.image = await this.toBaseSixFour(
+        this.set_code_outer_carton_image
+      ).then(res => {
+        return res
+      })
+    },
+    toBaseSixFour(file, key) {
+      if (file) {
+        return new Promise(resolve => {
+          const reader = new FileReader()
+          reader.onload = function(event) {
+            resolve(btoa(event.target.result))
+          }
+          reader.readAsBinaryString(file)
+        })
+      }
+    },
+    toImage(string, field) {}
   }
 }
 </script>
